@@ -1,0 +1,53 @@
+.profile-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
+  
+    ion-avatar {
+      width: 128px;
+      height: 128px;
+      margin-bottom: 1rem;
+    }
+  
+    h1 {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+  }
+  
+  ion-card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  ion-list {
+    background: transparent;
+  }
+  
+  ion-item {
+    --padding-start: 0;
+    --inner-padding-end: 0;
+  
+    ion-label {
+      margin-left: 1rem;
+  
+      h2 {
+        font-weight: 600;
+        font-size: 1rem;
+      }
+  
+      p {
+        color: var(--ion-color-medium);
+      }
+    }
+  }
+  
+  .logout-button {
+    margin-top: 2rem;
+    color: aqua;
+  }
+  
+  ion-content {
+    --background: linear-gradient(135deg, var(--ion-color-light), var(--ion-color-light-shade));
+  }
