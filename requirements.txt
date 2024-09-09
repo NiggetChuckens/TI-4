@@ -1,0 +1,7 @@
+django
+django-cors-headers
+djangorestframework
+django-allauth
+django_rest_framework
+python-dotenv
+prettytables
