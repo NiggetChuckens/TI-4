@@ -17,6 +17,12 @@ export class loginPage {
   constructor(private navCtrl: NavController) {}
 
   handleLogin() {
+    if (!this.email || !this.password) {
+      this.isError = true;
+      this.message = 'Please fill in all fields';
+      return;
+    }
+
     this.isLoading = true;
     const loginData = {
       email: this.email,
