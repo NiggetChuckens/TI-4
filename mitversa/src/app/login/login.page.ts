@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,7 @@ export class loginPage {
   password: string = '';
   rememberMe: boolean = false;
 
-  constructor() {}
+  constructor(private navCtrl: NavController) {}
 
   handleLogin() {
     console.log('Login attempted with:', {
@@ -18,6 +19,12 @@ export class loginPage {
       password: this.password,
       rememberMe: this.rememberMe,
     });
-    // Implement login logic here
+  }
+
+  navigateToRegister() {
+    this.navCtrl.navigateForward('/tabs/register', {
+      animated: true,
+      animationDirection: 'forward'
+    });
   }
 }

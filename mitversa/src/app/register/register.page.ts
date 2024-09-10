@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-register',
@@ -12,15 +12,24 @@ export class RegisterPage {
   password: string = '';
   confirmPassword: string = '';
 
-  constructor(private router: Router) {}
+  constructor(private navCtrl: NavController) {}
 
   handleRegister() {
     if (this.password === this.confirmPassword) {
       console.log('User registered:', this.fullName, this.email);
-      // Navegar de regreso a login luego del registro
-      this.router.navigate(['/login']);
+      this.navCtrl.navigateBack('/login', {
+        animated: true,
+        animationDirection: 'back'
+      });
     } else {
       console.log('Passwords do not match');
     }
+  }
+
+  navigateToLogin() {
+    this.navCtrl.navigateForward('/tabs/login', {
+      animated: true,
+      animationDirection: 'forward'
+    });
   }
 }

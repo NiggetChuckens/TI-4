@@ -58,6 +58,12 @@ form {
     color: var(--ion-color-light);
     font-weight: bold;
     text-decoration: none;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+
+  a:hover {
+    color: var(--ion-color-primary);
   }
 }
 
@@ -99,3 +105,5 @@ form {
     width: 50%;
   }
 }
+
+

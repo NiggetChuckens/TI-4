@@ -52,3 +52,12 @@ ion-content {
       text-decoration: none;
     }
   }
+  
+  .sign-up-text a {
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+  
+  .sign-up-text a:hover {
+    color: var(--ion-color-primary);
+  }
