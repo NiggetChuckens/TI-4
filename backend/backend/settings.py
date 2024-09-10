@@ -64,8 +64,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'integra',  
-        'USER': 'test_user',  
-        'PASSWORD': 'admin123',  
+        'USER': 'integracion',  
+        'PASSWORD': None,  
         'HOST': '127.0.0.1',
         'PORT': '3306',
         'OPTIONS': {
