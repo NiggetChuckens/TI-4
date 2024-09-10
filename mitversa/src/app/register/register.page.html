@@ -49,11 +49,15 @@
               required
             ></ion-input>
           </ion-item>
-          <ion-button expand="block" type="submit" [disabled]="!registerForm.form.valid" class="ion-margin-top">
+          <ion-button expand="block" type="submit" [disabled]="!registerForm.form.valid || isLoading" class="ion-margin-top">
             <ion-icon name="person-add-outline" slot="start"></ion-icon>
             Sign Up
           </ion-button>
         </form>
+        <ion-spinner *ngIf="isLoading" name="crescent"></ion-spinner>
+        <div *ngIf="message" [ngClass]="{'error-message': isError, 'success-message': !isError}">
+          {{ message }}
+        </div>
       </ion-card-content>
     </ion-card>
     <p class="login-text">

@@ -11,18 +11,52 @@ export class RegisterPage {
   email: string = '';
   password: string = '';
   confirmPassword: string = '';
+  isLoading: boolean = false;
+  message: string = '';
+  isError: boolean = false;
 
   constructor(private navCtrl: NavController) {}
 
   handleRegister() {
     if (this.password === this.confirmPassword) {
-      console.log('User registered:', this.fullName, this.email);
-      this.navCtrl.navigateBack('/login', {
-        animated: true,
-        animationDirection: 'back'
+      this.isLoading = true;
+      const userData = {
+        nombre: this.fullName.split(' ')[0],
+        apellido: this.fullName.split(' ')[1] || '',
+        email: this.email,
+        contraseña: this.password
+      };
+
+      fetch('http://127.0.0.1:8000/api/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(userData)
+      })
+      .then(response => response.json())
+      .then(data => {
+        this.isLoading = false;
+        if (data.error) {
+          this.isError = true;
+          this.message = data.error;
+        } else {
+          this.isError = false;
+          this.message = 'User registered successfully';
+          this.navCtrl.navigateBack('/tabs/login', {
+            animated: true,
+            animationDirection: 'back'
+          });
+        } 
+      })
+      .catch(error => {
+        this.isLoading = false;
+        this.isError = true;
+        this.message = 'Error: ' + error;
       });
     } else {
-      console.log('Passwords do not match');
+      this.isError = true;
+      this.message = 'Passwords do not match';
     }
   }
 

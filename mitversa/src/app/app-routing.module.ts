@@ -17,6 +17,14 @@ const routes: Routes = [
   {
     path: 'repartidores',
     loadChildren: () => import('./repartidores/repartidores.module').then( m => m.RepartidoresPageModule)
+  },
+  {
+    path: 'perfil',
+    loadChildren: () => import('./perfil/perfil.module').then( m => m.perfilPageModule)
+  },
+  {
+    path: 'tabs',
+    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
   }
 ];
 @NgModule({

@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-page3',
-  templateUrl: './tab3.page.html',
-  styleUrls: ['./tab3.page.scss'],
+  templateUrl: './perfil.page.html',
+  styleUrls: ['./perfil.page.scss'],
 })
-export class Tab3Page implements OnInit {
+export class perfilPage implements OnInit {
   user = {
     name: 'Michael Scott',
     email: 'michaelscott@example.com',

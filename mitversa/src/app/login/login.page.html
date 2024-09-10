@@ -8,6 +8,9 @@
   <div class="login-container">
     <ion-card>
       <ion-card-content>
+        <div *ngIf="message" [ngClass]="{'error-message': isError, 'success-message': !isError}">
+          {{ message }}
+        </div>
         <form (ngSubmit)="handleLogin()" #loginForm="ngForm">
           <ion-item>
             <ion-icon name="person-circle-outline" slot="start"></ion-icon>
@@ -33,11 +36,16 @@
             <ion-label>Remember me</ion-label>
             <ion-toggle [(ngModel)]="rememberMe" name="rememberMe"></ion-toggle>
           </ion-item>
-          <ion-button expand="block" type="submit" [disabled]="!loginForm.form.valid" class="ion-margin-top">
+          <ion-button expand="block" type="submit" [disabled]="!loginForm.form.valid || isLoading" class="ion-margin-top">
             <ion-icon name="log-in-outline" slot="start"></ion-icon>
             Login
           </ion-button>
         </form>
+        <ion-spinner *ngIf="isLoading" name="crescent"></ion-spinner>
+        <ion-button expand="block" color="secondary" class="ion-margin-top">
+          <ion-icon name="logo-google" slot="start"></ion-icon>
+          Login with Google
+        </ion-button>
       </ion-card-content>
     </ion-card>
     <p class="sign-up-text">

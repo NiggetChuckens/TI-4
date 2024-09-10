@@ -7,7 +7,9 @@ from .views import (
     ProductoViewSet,
     PedidoViewSet,
     EnvioViewSet,
-    NotificacionViewSet
+    NotificacionViewSet,
+    register_user,
+    login_user
 )
 
 router = DefaultRouter()
@@ -20,5 +22,7 @@ router.register(r'envios', EnvioViewSet)
 router.register(r'notificaciones', NotificacionViewSet)
 
 urlpatterns = [
+    path('register', register_user, name='register_user'),
+    path('login', login_user, name='login_user'),
     path('', include(router.urls)),
 ]
