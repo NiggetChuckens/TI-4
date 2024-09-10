@@ -38,7 +38,6 @@
        }
    }
    ```
-
 5. **Aplicar las migraciones:**
    ```sh
    python manage.py migrate

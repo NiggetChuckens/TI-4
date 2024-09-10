@@ -1,4 +1,5 @@
 mitversa/node_modules
+mitversa/.angular/cache
 *~
 *.sw[mnpcod]
 .tmp
