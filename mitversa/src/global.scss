@@ -5,33 +5,348 @@
  * the entire app and not just one component. Additionally, this file can be
  * used as an entry point to import other CSS/Sass files to be included in the
  * output CSS.
- * For more information on global stylesheets, visit the documentation:
- * https://ionicframework.com/docs/layout/global-stylesheets
  */
 
 /* Core CSS required for Ionic components to work properly */
-@import "@ionic/angular/css/core.css";
+@import "~@ionic/angular/css/core.css";
 
 /* Basic CSS for apps built with Ionic */
-@import "@ionic/angular/css/normalize.css";
-@import "@ionic/angular/css/structure.css";
-@import "@ionic/angular/css/typography.css";
-@import "@ionic/angular/css/display.css";
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/display.css';
 
 /* Optional CSS utils that can be commented out */
-@import "@ionic/angular/css/padding.css";
-@import "@ionic/angular/css/float-elements.css";
-@import "@ionic/angular/css/text-alignment.css";
-@import "@ionic/angular/css/text-transformation.css";
-@import "@ionic/angular/css/flex-utils.css";
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
 
-/**
- * Ionic Dark Mode
- * -----------------------------------------------------
- * For more info, please see:
- * https://ionicframework.com/docs/theming/dark-mode
- */
+:root {
+  --ion-color-primary: #3880ff;
+  --ion-color-primary-rgb: 56, 128, 255;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #3171e0;
+  --ion-color-primary-tint: #4c8dff;
 
-/* @import "@ionic/angular/css/palettes/dark.always.css"; */
-/* @import "@ionic/angular/css/palettes/dark.class.css"; */
-@import "@ionic/angular/css/palettes/dark.system.css";
+  --ion-color-secondary: #3dc2ff;
+  --ion-color-secondary-rgb: 61, 194, 255;
+  --ion-color-secondary-contrast: #ffffff;
+  --ion-color-secondary-contrast-rgb: 255, 255, 255;
+  --ion-color-secondary-shade: #36abe0;
+  --ion-color-secondary-tint: #50c8ff;
+
+  --ion-color-tertiary: #5260ff;
+  --ion-color-tertiary-rgb: 82, 96, 255;
+  --ion-color-tertiary-contrast: #ffffff;
+  --ion-color-tertiary-contrast-rgb: 255, 255, 255;
+  --ion-color-tertiary-shade: #4854e0;
+  --ion-color-tertiary-tint: #6370ff;
+
+  --ion-color-success: #2dd36f;
+  --ion-color-success-rgb: 45, 211, 111;
+  --ion-color-success-contrast: #ffffff;
+  --ion-color-success-contrast-rgb: 255, 255, 255;
+  --ion-color-success-shade: #28ba62;
+  --ion-color-success-tint: #42d77d;
+
+  --ion-color-warning: #ffc409;
+  --ion-color-warning-rgb: 255, 196, 9;
+  --ion-color-warning-contrast: #000000;
+  --ion-color-warning-contrast-rgb: 0, 0, 0;
+  --ion-color-warning-shade: #e0ac08;
+  --ion-color-warning-tint: #ffca22;
+
+  --ion-color-danger: #eb445a;
+  --ion-color-danger-rgb: 235, 68, 90;
+  --ion-color-danger-contrast: #ffffff;
+  --ion-color-danger-contrast-rgb: 255, 255, 255;
+  --ion-color-danger-shade: #cf3c4f;
+  --ion-color-danger-tint: #ed576b;
+
+  --ion-color-dark: #222428;
+  --ion-color-dark-rgb: 34, 36, 40;
+  --ion-color-dark-contrast: #ffffff;
+  --ion-color-dark-contrast-rgb: 255, 255, 255;
+  --ion-color-dark-shade: #1e2023;
+  --ion-color-dark-tint: #383a3e;
+
+  --ion-color-medium: #92949c;
+  --ion-color-medium-rgb: 146, 148, 156;
+  --ion-color-medium-contrast: #ffffff;
+  --ion-color-medium-contrast-rgb: 255, 255, 255;
+  --ion-color-medium-shade: #808289;
+  --ion-color-medium-tint: #9d9fa6;
+
+  --ion-color-light: #f4f5f8;
+  --ion-color-light-rgb: 244, 245, 248;
+  --ion-color-light-contrast: #000000;
+  --ion-color-light-contrast-rgb: 0, 0, 0;
+  --ion-color-light-shade: #d7d8da;
+  --ion-color-light-tint: #f5f6f9;
+
+  --ion-font-family: 'Roboto', sans-serif;
+}
+
+/* Global Styles */
+body {
+  --ion-background-color: #f4f5f8;
+  --ion-background-color-rgb: 244,245,248;
+  --ion-text-color: #333333;
+  --ion-text-color-rgb: 51,51,51;
+}
+
+/* Header Styles */
+ion-header {
+  ion-toolbar {
+    --background: var(--ion-color-primary);
+    --color: var(--ion-color-primary-contrast);
+    
+    ion-title {
+      font-weight: 700;
+      font-size: 1.2rem;
+    }
+  }
+}
+
+/* Content Styles */
+ion-content {
+  --background: linear-gradient(135deg, var(--ion-color-light), #ffffff);
+}
+
+/* Card Styles */
+ion-card {
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  
+  ion-card-header {
+    background: var(--ion-color-primary);
+    color: var(--ion-color-primary-contrast);
+  }
+  
+  ion-card-content {
+    padding: 16px;
+  }
+}
+
+/* Item Styles */
+ion-item {
+  --padding-start: 16px;
+  --inner-padding-end: 16px;
+  --background: transparent;
+  --border-color: rgba(0, 0, 0, 0.1);
+  
+  &:last-child {
+    --border-width: 0px;
+  }
+}
+
+/* Button Styles */
+ion-button {
+  --border-radius: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  
+  &.button-solid {
+    --box-shadow: 0 4px 12px rgba(var(--ion-color-primary-rgb), 0.3);
+  }
+}
+
+/* Input Styles */
+ion-input, ion-textarea {
+  --background: rgba(var(--ion-color-primary-rgb), 0.1);
+  --padding-start: 16px;
+  --padding-end: 16px;
+  border-radius: 10px;
+  margin-bottom: 16px;
+}
+
+/* List Styles */
+ion-list {
+  background: transparent;
+  padding: 0;
+}
+
+/* Segment Styles */
+ion-segment {
+  --background: var(--ion-color-light);
+  border-radius: 10px;
+  margin: 16px 0;
+  
+  ion-segment-button {
+    --background-checked: var(--ion-color-primary);
+    --color-checked: var(--ion-color-primary-contrast);
+    --indicator-color: transparent;
+    min-height: 40px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+}
+
+/* Fab Button Styles */
+ion-fab-button {
+  --background: var(--ion-color-primary);
+  --color: var(--ion-color-primary-contrast);
+  --box-shadow: 0 4px 12px rgba(var(--ion-color-primary-rgb), 0.3);
+}
+
+/* Toggle Styles */
+ion-toggle {
+  --background: rgba(var(--ion-color-primary-rgb), 0.3);
+  --background-checked: rgba(var(--ion-color-primary-rgb), 0.6);
+  --handle-background: var(--ion-color-primary-contrast);
+  --handle-background-checked: var(--ion-color-primary);
+}
+
+/* Checkbox Styles */
+ion-checkbox {
+  --background-checked: var(--ion-color-primary);
+  --border-color-checked: var(--ion-color-primary);
+  --checkmark-color: var(--ion-color-primary-contrast);
+  --border-radius: 4px;
+}
+
+/* Radio Styles */
+ion-radio {
+  --color-checked: var(--ion-color-primary);
+}
+
+/* Badge Styles */
+ion-badge {
+  border-radius: 10px;
+  padding: 4px 8px;
+}
+
+/* Alert Styles */
+.alert-wrapper {
+  border-radius: 15px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Toast Styles */
+ion-toast {
+  --border-radius: 10px;
+  --box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Modal Styles */
+ion-modal {
+  --border-radius: 20px;
+  --box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Popover Styles */
+ion-popover {
+  --box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  
+  .popover-content {
+    border-radius: 10px;
+  }
+}
+
+/* Action Sheet Styles */
+.action-sheet-group {
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+/* Menu Styles */
+ion-menu {
+  --background: var(--ion-background-color);
+  
+  ion-content {
+    --background: transparent;
+  }
+  
+  ion-list {
+    background: transparent;
+  }
+  
+  ion-item {
+    --background: transparent;
+  }
+}
+
+/* Searchbar Styles */
+ion-searchbar {
+  --box-shadow: none;
+  --background: rgba(var(--ion-color-primary-rgb), 0.1);
+  --color: var(--ion-text-color);
+  --placeholder-color: rgba(var(--ion-text-color-rgb), 0.6);
+  --icon-color: var(--ion-color-primary);
+  --border-radius: 10px;
+  padding: 0 8px;
+}
+
+/* Refresher Styles */
+ion-refresher {
+  z-index: 1;
+}
+
+/* Infinite Scroll Styles */
+ion-infinite-scroll-content {
+  --color: var(--ion-color-primary);
+}
+
+/* Progress Bar Styles */
+ion-progress-bar {
+  --background: rgba(var(--ion-color-primary-rgb), 0.2);
+  --progress-background: var(--ion-color-primary);
+  height: 6px;
+  border-radius: 3px;
+}
+
+/* Skeleton Text Styles */
+ion-skeleton-text {
+  --border-radius: 10px;
+}
+
+/* Chip Styles */
+ion-chip {
+  --background: rgba(var(--ion-color-primary-rgb), 0.1);
+  --color: var(--ion-color-primary);
+  font-weight: 600;
+}
+
+/* Avatar Styles */
+ion-avatar {
+  --border-radius: 50%;
+  border: 2px solid var(--ion-color-primary);
+}
+
+/* Icon Styles */
+ion-icon {
+  &[slot="start"],
+  &[slot="end"] {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+
+/* Typography Styles */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  margin-bottom: 0.5em;
+}
+
+/* Utility Classes */
+.text-primary {
+  color: var(--ion-color-primary);
+}
+
+.bg-primary {
+  background-color: var(--ion-color-primary);
+  color: var(--ion-color-primary-contrast);
+}
+
+.rounded {
+  border-radius: 10px;
+}
+
+.shadow {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
