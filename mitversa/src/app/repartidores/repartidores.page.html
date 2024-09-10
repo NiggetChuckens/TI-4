@@ -1,0 +1,77 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Repartidores</ion-title>
+    <ion-buttons slot="end">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <!-- Filtro y acciones -->
+  <div class="filter-container">
+    <ion-searchbar placeholder="Filtrar" [(ngModel)]="searchTerm" (ionInput)="filterRepartidores()"></ion-searchbar>
+    <ion-button color="success" fill="clear">
+      <ion-icon name="person-add-outline"></ion-icon>
+    </ion-button>
+  </div>
+
+  <!-- Lista de repartidores filtrada -->
+  <div *ngFor="let repartidor of filteredRepartidores">
+    <ion-card>
+      <ion-card-content class="repartidor-card">
+        <div class="repartidor-header">
+          <ion-avatar slot="start">
+            <img [src]="repartidor.profilePicture" alt="Profile Picture">
+          </ion-avatar>
+          <div>
+            <h2>{{ repartidor.name }}</h2>
+            <p>{{ repartidor.email }}</p>
+          </div>
+          <!-- Botón de eliminar dentro de cada card -->
+          <ion-button fill="clear" size="small" color="danger" (click)="deleteRepartidor(repartidor)">
+            <ion-icon name="trash-outline"></ion-icon>
+          </ion-button>
+        </div>
+
+        <!-- Íconos adicionales para editar perfil y asignar pedidos -->
+        <div class="repartidor-actions">
+          <ion-button fill="clear" size="small" color="secondary" (click)="editProfile(repartidor)">
+            <ion-icon name="create-outline"></ion-icon>
+            Editar Perfil
+          </ion-button>
+          <ion-button fill="clear" size="small" color="primary" (click)="assignOrder(repartidor)">
+            <ion-icon name="cube-outline"></ion-icon>
+            Asignar Pedidos
+          </ion-button>
+        </div>
+
+        <!-- Información de reparto -->
+        <div class="repartidor-stats">
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <div class="stat-icon">
+                  <ion-icon name="send" color="primary"></ion-icon>
+                </div>
+                <p>{{ repartidor.repartos }} Repartos</p>
+              </ion-col>
+              <ion-col>
+                <div class="stat-icon">
+                  <ion-icon name="return-down-back-outline" color="primary"></ion-icon>
+                </div>
+                <p>{{ repartidor.devueltos }} Devueltos</p>
+              </ion-col>
+              <ion-col>
+                <div class="stat-icon">
+                  <ion-icon name="cube" color="primary"></ion-icon>
+                </div>
+                <p>{{ repartidor.entregados }} Entregados</p>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>
