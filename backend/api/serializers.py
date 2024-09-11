@@ -4,7 +4,7 @@ from .models import Usuario, Gerente, Repartidor, Producto, Pedido, Envio, Notif
 class UsuarioSerializer(serializers.ModelSerializer):
     class Meta:
         model = Usuario
-        fields = ['id', 'username', 'email', 'nombre', 'apellido']
+        fields = ['id_usuario', 'nombre', 'apellido', 'email', 'contraseña']
 
 class GerenteSerializer(serializers.ModelSerializer):
     usuario = UsuarioSerializer()
