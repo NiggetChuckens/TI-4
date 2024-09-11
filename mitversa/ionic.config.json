@@ -1,8 +1,7 @@
 {
-  "name": "MitVersa",
+  "name": "mitversa",
   "integrations": {
     "capacitor": {}
   },
-  "type": "angular",
-  "id": "b367d5fe"
+  "type": "angular"
 }
