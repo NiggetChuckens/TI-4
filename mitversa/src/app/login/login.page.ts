@@ -45,7 +45,7 @@ export class loginPage {
       } else {
         this.isError = false;
         this.message = 'Login successful';
-        this.navCtrl.navigateForward('/tabs/perfil', {
+        this.navCtrl.navigateForward('/tabs/user-home', {
           animated: true,
           animationDirection: 'forward'
         });

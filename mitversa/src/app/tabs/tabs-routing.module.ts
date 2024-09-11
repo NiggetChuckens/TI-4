@@ -20,6 +20,10 @@ const routes: Routes = [
         loadChildren: () => import('../perfil/perfil.module').then(m => m.perfilPageModule)
       },
       {
+        path: 'user-home',
+        loadChildren: () => import('../user-home/user-home.module').then(m => m.UserHomePageModule)
+      },
+      {
         path: '',
         redirectTo: '/tabs/login',
         pathMatch: 'full'

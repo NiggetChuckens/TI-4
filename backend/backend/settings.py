@@ -65,8 +65,8 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'integra',  
-        'USER': 'integracion',  
+        'NAME': 'hola',  
+        'USER': 'pato',  
         'PASSWORD': None,  
         'HOST': '127.0.0.1',
         'PORT': '3306',
