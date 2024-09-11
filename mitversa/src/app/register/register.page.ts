@@ -18,46 +18,58 @@ export class RegisterPage {
   constructor(private navCtrl: NavController) {}
 
   handleRegister() {
-    if (this.password === this.confirmPassword) {
-      this.isLoading = true;
-      const userData = {
-        nombre: this.fullName.split(' ')[0],
-        apellido: this.fullName.split(' ')[1] || '',
-        email: this.email,
-        contraseña: this.password
-      };
+    if (this.password.length < 6) {
+      this.isError = true;
+      this.message = 'La contraseña debe tener al menos 6 caracteres.';
+      return;
+    }
+    if (this.password !== this.confirmPassword) {
+      this.isError = true;
+      this.message = 'Las contraseñas no coinciden.';
+      return;
+    }
+    this.isLoading = true;
+    const userData = {
+      nombre: this.fullName.split(' ')[0],
+      apellido: this.fullName.split(' ')[1] || '',
+      email: this.email,
+      contraseña: this.password,
+      confirmar_contraseña: this.confirmPassword // Add this line
+    };
 
-      fetch('http://127.0.0.1:8000/api/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(userData)
-      })
-      .then(response => response.json())
-      .then(data => {
-        this.isLoading = false;
-        if (data.error) {
-          this.isError = true;
-          this.message = data.error;
+    fetch('http://127.0.0.1:8000/api/register', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(userData)
+    })
+    .then(response => response.json())
+    .then(data => {
+      this.isLoading = false;
+      if (data.error) {
+        this.isError = true;
+        if (data.error.includes('correo ingresado ya existe')) {
+          this.message = 'El correo ingresado ya existe.';
         } else {
-          this.isError = false;
-          this.message = 'User registered successfully';
+          this.message = data.error;
+        }
+      } else {
+        this.isError = false;
+        this.message = 'Usuario registrado correctamente.';
+        setTimeout(() => {
           this.navCtrl.navigateBack('/tabs/login', {
             animated: true,
             animationDirection: 'back'
           });
-        } 
-      })
-      .catch(error => {
-        this.isLoading = false;
-        this.isError = true;
-        this.message = 'Error: ' + error;
-      });
-    } else {
+        }, 3000);
+      } 
+    })
+    .catch(error => {
+      this.isLoading = false;
       this.isError = true;
-      this.message = 'Passwords do not match';
-    }
+      this.message = 'Error: ' + error;
+    });
   }
 
   navigateToLogin() {

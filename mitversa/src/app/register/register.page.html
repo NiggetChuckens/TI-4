@@ -8,6 +8,9 @@
   <div class="register-container">
     <ion-card>
       <ion-card-content>
+        <div *ngIf="message" [ngClass]="{'error-message': isError, 'success-message': !isError}">
+          {{ message }}
+        </div>
         <form (ngSubmit)="handleRegister()" #registerForm="ngForm">
           <ion-item>
             <ion-icon name="person-outline" slot="start"></ion-icon>
@@ -55,9 +58,6 @@
           </ion-button>
         </form>
         <ion-spinner *ngIf="isLoading" name="crescent"></ion-spinner>
-        <div *ngIf="message" [ngClass]="{'error-message': isError, 'success-message': !isError}">
-          {{ message }}
-        </div>
       </ion-card-content>
     </ion-card>
     <p class="login-text">
