@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Estado de pedido</ion-title>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon slot="icon-only" name="help-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="map-container">
+    <img src="assets/map-placeholder.png" alt="Map" class="map-image">
+    <ion-icon name="location" class="location-icon"></ion-icon>
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-item" *ngFor="let step of orderSteps">
+      <div class="timeline-marker" [class.completed]="step.completed"></div>
+      <div class="timeline-content">
+        <h3>{{ step.title }}</h3>
+        <p>{{ step.description }}</p>
+      </div>
+    </div>
+  </div>
+
+  <ion-button expand="block" (click)="downloadInvoice()" class="invoice-button">
+    <ion-icon name="document-text-outline" slot="start"></ion-icon>
+    Descargar factura
+  </ion-button>
+</ion-content>

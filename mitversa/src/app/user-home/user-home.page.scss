@@ -1,0 +1,116 @@
+ion-content {
+    --background: linear-gradient(135deg, var(--ion-color-primary), var(--ion-color-secondary));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+  }
+  
+  .codigo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 400px;
+    padding: 2rem;
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    text-align: center;
+  }
+  
+  /* Input item */
+  .input-item {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    width: 100%;
+    max-width: 350px;
+    padding: 0.5rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Input */
+  .input-codigo {
+    text-align: center;
+    color: var(--ion-color-dark);
+    font-size: 1.1rem;
+    border-radius: 12px;
+  }
+  
+  /* Botón */
+  .button-codigo {
+    width: 100%;
+    max-width: 350px;
+    border-radius: 15px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    background: linear-gradient(45deg, var(--ion-color-primary), var(--ion-color-secondary));
+    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.2);
+    color: white;
+    padding: 0.8rem;
+    transition: background 0.3s ease, transform 0.3s ease;
+  }
+  
+  /* Hover y active */
+  .button-codigo:hover {
+    transform: translateY(-3px);
+    background: linear-gradient(45deg, var(--ion-color-secondary), var(--ion-color-primary));
+  }
+  
+  .button-codigo:active {
+    transform: translateY(0);
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Responsividad usando media queries */
+  @media (max-width: 768px) {
+    /* Para pantallas pequeñas (tablets y móviles) */
+    .codigo-container {
+      max-width: 90%; /* Ocupa el 90% del ancho */
+      padding: 1.5rem;
+    }
+  
+    .input-item, .button-codigo {
+      max-width: 100%; /* Los elementos ocupan todo el ancho disponible */
+      font-size: 1rem;
+    }
+  
+    .button-codigo {
+      padding: 0.7rem; /* Ajustamos el padding del botón */
+      font-size: 1rem;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    /* Para móviles pequeños */
+    .codigo-container {
+      max-width: 95%; /* Ocupa casi todo el ancho en pantallas muy pequeñas */
+      padding: 1.2rem;
+    }
+  
+    .input-item, .button-codigo {
+      max-width: 100%;
+      font-size: 0.9rem; /* Disminuimos ligeramente el tamaño del texto */
+    }
+  
+    .button-codigo {
+      padding: 0.6rem;
+      font-size: 0.9rem; /* Tamaño de texto más pequeño en pantallas pequeñas */
+    }
+  }
+  
+  @media (min-width: 1200px) {
+    /* Para pantallas muy grandes */
+    .codigo-container {
+      max-width: 400px; /* Limita el ancho máximo en pantallas grandes */
+      padding: 3rem;
+    }
+  
+    .button-codigo {
+      padding: 1rem;
+      font-size: 1.2rem; /* Botón más grande en pantallas grandes */
+    }
+  }
+  
