@@ -1,6 +1,6 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from views.login_view import login_view
+from .view.login_view import login
 from .views import (
     UsuarioViewSet,
     GerenteViewSet,
@@ -22,5 +22,5 @@ router.register(r'notificaciones', NotificacionViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
-    path('login/', login_view, name='login'),
+    path('api/login/', login),
 ]

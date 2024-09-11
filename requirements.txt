@@ -1,6 +1,5 @@
-django
+django==5.1
 django-cors-headers
-djangorestframework
 django-allauth
 django_rest_framework
 python-dotenv
