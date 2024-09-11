@@ -58,6 +58,12 @@ form {
     color: var(--ion-color-light);
     font-weight: bold;
     text-decoration: none;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+
+  a:hover {
+    color: var(--ion-color-primary);
   }
 }
 
@@ -99,3 +105,23 @@ form {
     width: 50%;
   }
 }
+
+.error-message {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.success-message {
+  background-color: #d4edda;
+  color: #155724;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+
