@@ -15,13 +15,18 @@ const routes: Routes = [
         path: 'register',
         loadChildren: () => import('../register/register.module').then(m => m.RegisterPageModule)
       },
-      {
-        path: 'perfil',
-        loadChildren: () => import('../perfil/perfil.module').then(m => m.perfilPageModule)
-      },
+      
       {
         path: 'user-home',
         loadChildren: () => import('../user-home/user-home.module').then(m => m.UserHomePageModule)
+      },
+      {
+        path: 'user-pedidos',
+        loadChildren: () => import('../user-pedidos/user-pedidos.module').then(m => m.UserPedidosPageModule)
+      },
+      {
+        path: 'perfil',
+        loadChildren: () => import('../perfil/perfil.module').then(m => m.perfilPageModule)
       },
       {
         path: '',
@@ -36,6 +41,7 @@ const routes: Routes = [
     pathMatch: 'full'
   }
 ];
+
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

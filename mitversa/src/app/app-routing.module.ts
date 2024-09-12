@@ -25,11 +25,15 @@ const routes: Routes = [
   {
     path: 'tabs',
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
-  },  {
+  },
+  {
     path: 'user-home',
     loadChildren: () => import('./user-home/user-home.module').then( m => m.UserHomePageModule)
-  }
-
+  },
+  {
+    path: 'user-pedidos',
+    loadChildren: () => import('./user-pedidos/user-pedidos.module').then( m => m.UserPedidosPageModule)
+  },
 ];
 @NgModule({
   imports: [
