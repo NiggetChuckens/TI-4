@@ -54,9 +54,20 @@ class Producto(models.Model):
         db_table = 'producto'
 
 class Pedido(models.Model):
+    class EstadoPedido(models.TextChoices):
+        PENDIENTE = 'pendiente', 'Pendiente'
+        PROCESANDO = 'procesando', 'Procesando'
+        COMPLETADO = 'completado', 'Completado'
+        CANCELADO = 'cancelado', 'Cancelado'
+
     id_pedido = models.AutoField(db_column='ID_pedido', primary_key=True)
-    fecha_pedido = models.DateTimeField(blank=True, null=True)
-    estado_pedido = models.CharField(max_length=10, blank=True, null=True)
+    fecha_pedido = models.DateTimeField(auto_now_add=True, blank=True, null=True)
+    estado_pedido = models.CharField(
+        max_length=10,
+        choices=EstadoPedido.choices,
+        blank=True,
+        null=True
+    )
     id_producto = models.ForeignKey(Producto, models.DO_NOTHING, db_column='ID_producto', blank=True, null=True)
 
     def __str__(self):
@@ -66,12 +77,24 @@ class Pedido(models.Model):
         db_table = 'pedido'
 
 class Envio(models.Model):
+    class EstadoEnvio(models.TextChoices):
+        NO_ENVIADO = 'no_enviado', 'No enviado'
+        EN_CAMINO = 'en_camino', 'En camino'
+        ENTREGADO = 'entregado', 'Entregado'
+        NO_ENTREGADO = 'no_entregado', 'No entregado'
+        DEVUELTO = 'devuelto', 'Devuelto'
+
     id_envio = models.AutoField(db_column='ID_envio', primary_key=True)
     numero_seguimiento = models.IntegerField(blank=True, null=True)
     direccion_origen = models.CharField(max_length=200, blank=True, null=True)
     direccion_destino = models.CharField(max_length=200, blank=True, null=True)
     fecha_envio = models.DateTimeField(blank=True, null=True)
-    estado_envio = models.CharField(max_length=11, blank=True, null=True)
+    estado_envio = models.CharField(
+        max_length=12,
+        choices=EstadoEnvio.choices,
+        blank=True,
+        null=True
+    )
     id_pedido = models.ForeignKey(Pedido, models.DO_NOTHING, db_column='ID_pedido', blank=True, null=True)
     id_repartidor = models.ForeignKey(Repartidor, models.DO_NOTHING, db_column='ID_repartidor', blank=True, null=True)
 
@@ -82,10 +105,22 @@ class Envio(models.Model):
         db_table = 'envio'
 
 class Notificacion(models.Model):
+    class EstadoEnvio(models.TextChoices):
+        NO_ENVIADO = 'no_enviado', 'No enviado'
+        EN_CAMINO = 'en_camino', 'En camino'
+        ENTREGADO = 'entregado', 'Entregado'
+        NO_ENTREGADO = 'no_entregado', 'No entregado'
+        DEVUELTO = 'devuelto', 'Devuelto'
+
     id_notificacion = models.AutoField(db_column='ID_notificacion', primary_key=True)
     mensaje = models.TextField(blank=True, null=True)
     fecha_envio = models.DateTimeField(blank=True, null=True)
-    estado_envio = models.CharField(max_length=9, blank=True, null=True)
+    estado_envio = models.CharField(
+        max_length=12,
+        choices=EstadoEnvio.choices,
+        blank=True,
+        null=True
+    )
     id_envio = models.ForeignKey(Envio, models.DO_NOTHING, db_column='ID_envio', blank=True, null=True)
     id_usuario = models.ForeignKey(Usuario, models.DO_NOTHING, db_column='ID_usuario', blank=True, null=True)
 
