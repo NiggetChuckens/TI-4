@@ -25,7 +25,27 @@ const routes: Routes = [
   {
     path: 'tabs',
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
+  },  {
+    path: 'user-home',
+    loadChildren: () => import('./user-home/user-home.module').then( m => m.UserHomePageModule)
+  },
+  {
+    path: 'product-scanner',
+    loadChildren: () => import('./product-scanner/product-scanner.module').then( m => m.ProductScannerPageModule)
+  },
+  {
+    path: 'search',
+    loadChildren: () => import('./search/search.module').then( m => m.SearchPageModule)
+  },
+  {
+    path: 'history',
+    loadChildren: () => import('./history/history.module').then( m => m.HistoryPageModule)
+  },
+  {
+    path: 'tracking',
+    loadChildren: () => import('./tracking/tracking.module').then( m => m.TrackingPageModule)
   }
+
 ];
 @NgModule({
   imports: [
