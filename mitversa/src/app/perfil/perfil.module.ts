@@ -14,13 +14,9 @@ import { perfilPageRoutingModule } from './perfil-routing.module';
     CommonModule,
     FormsModule,
     ExploreContainerComponentModule,
-<<<<<<< HEAD
-    perfilPageRoutingModule
-=======
     perfilPageRoutingModule,
     HttpClientModule,
     
->>>>>>> origin/Dev-Patricio
   ],
   declarations: [perfilPage]
 })
