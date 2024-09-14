@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from '@ionic/angular';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-register',
@@ -7,15 +8,15 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['./register.page.scss'],
 })
 export class RegisterPage {
-  fullName: string = '';
-  email: string = '';
-  password: string = '';
-  confirmPassword: string = '';
-  isLoading: boolean = false;
-  message: string = '';
-  isError: boolean = false;
+  fullName = '';
+  email = '';
+  password = '';
+  confirmPassword = '';
+  isLoading = false;
+  message = '';
+  isError = false;
 
-  constructor(private navCtrl: NavController) {}
+  constructor(private navCtrl: NavController, private http: HttpClient) {}
 
   handleRegister() {
     if (this.password.length < 6) {
@@ -34,42 +35,36 @@ export class RegisterPage {
       apellido: this.fullName.split(' ')[1] || '',
       email: this.email,
       contraseña: this.password,
-      confirmar_contraseña: this.confirmPassword // Add this line
+      confirmar_contraseña: this.confirmPassword
     };
 
-    fetch('http://127.0.0.1:8000/api/register', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(userData)
-    })
-    .then(response => response.json())
-    .then(data => {
-      this.isLoading = false;
-      if (data.error) {
-        this.isError = true;
-        if (data.error.includes('correo ingresado ya existe')) {
-          this.message = 'El correo ingresado ya existe.';
+    this.http.post('http://127.0.0.1:8000/api/register', userData).subscribe(
+      (data: any) => {
+        this.isLoading = false;
+        if (data.error) {
+          this.isError = true;
+          if (data.error.includes('correo ingresado ya existe')) {
+            this.message = 'El correo ingresado ya existe.';
+          } else {
+            this.message = data.error;
+          }
         } else {
-          this.message = data.error;
-        }
-      } else {
-        this.isError = false;
-        this.message = 'Usuario registrado correctamente.';
-        setTimeout(() => {
-          this.navCtrl.navigateBack('/tabs/login', {
-            animated: true,
-            animationDirection: 'back'
-          });
-        }, 3000);
-      }   
-    })
-    .catch(error => {
-      this.isLoading = false;
-      this.isError = true;
-      this.message = 'Error: ' + error;
-    });
+          this.isError = false;
+          this.message = 'Usuario registrado correctamente.';
+          setTimeout(() => {
+            this.navCtrl.navigateBack('/tabs/login', {
+              animated: true,
+              animationDirection: 'back'
+            });
+          }, 3000);
+        }   
+      },
+      error => {
+        this.isLoading = false;
+        this.isError = true;
+        this.message = 'Error: ' + error.message;
+      }
+    );
   }
 
   navigateToLogin() {
