@@ -85,3 +85,4 @@ testem.log
 .DS_Store
 Thumbs.db
 db.sql
+.aider*
