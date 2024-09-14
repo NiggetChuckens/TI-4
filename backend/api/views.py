@@ -1,8 +1,8 @@
-from django.shortcuts import render
-from rest_framework import viewsets
+from django.contrib.auth.hashers import make_password, check_password
+from rest_framework import viewsets, status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from django.db import IntegrityError
+from django.db import IntegrityError, transaction
 import logging
 
 logger = logging.getLogger(__name__)
@@ -42,41 +42,44 @@ class NotificacionViewSet(viewsets.ModelViewSet):
 
 @api_view(['POST'])
 def register_user(request):
-    data = request.data
-    try:
-        if len(data['contraseña']) < 6:
-            return Response({'error': 'La contraseña debe tener al menos 6 caracteres.'}, status=400)
-        if len(data['contraseña']) > 11529421321504284606846976:
-            return Response({'error': 'La contraseña no debe tener más de 11529421321504284606846976 caracteres.'}, status=400)
-        if data['contraseña'] != data['confirmar_contraseña']:
-            return Response({'error': 'Las contraseñas no coinciden.'}, status=400)
-        user = Usuario(
-            nombre=data['nombre'],
-            apellido=data['apellido'],
-            email=data['email'],
-            contraseña=data['contraseña']
-        )
-        user.save()
-        serializer = UsuarioSerializer(user)
-        return Response(serializer.data)
-    except IntegrityError as e:
-        logger.error(f"IntegrityError: {e}")
-        if '1062' in str(e.args):
-            return Response({'error': 'El correo ingresado ya existe.'}, status=400)
-        return Response({'error': 'Ocurrió un error.'}, status=500)
-    except Exception as e:
-        logger.error(f"Unexpected error: {e}")
-        return Response({'error': 'Ocurrió un error inesperado.'}, status=500)
+    serializer = UsuarioSerializer(data=request.data)
+    if serializer.is_valid():
+        try:
+            with transaction.atomic():
+                # Hash the password
+                serializer.validated_data['contraseña'] = make_password(serializer.validated_data['contraseña'])
+                user = Usuario.objects.create(**serializer.validated_data)
+                # Optionally, create associated roles here
+            response_serializer = UsuarioSerializer(user)
+            return Response(response_serializer.data, status=status.HTTP_201_CREATED)
+        except IntegrityError as e:
+            if '1062' in str(e.args):
+                return Response({'error': 'El correo ingresado ya existe.'}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'error': 'Ocurrió un error.'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        except Exception as e:
+            logger.error(f"Unexpected error: {e}")
+            return Response({'error': 'Ocurrió un error inesperado.'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    else:
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['POST'])
 def login_user(request):
     data = request.data
+    email = data.get('email')
+    password = data.get('contraseña')
+
+    if not email or not password:
+        return Response({'error': 'Email y contraseña son requeridos.'}, status=status.HTTP_400_BAD_REQUEST)
+
     try:
-        user = Usuario.objects.get(email=data['email'])
-        if user.contraseña == data['contraseña']:
+        user = Usuario.objects.get(email=email)
+        if check_password(password, user.contraseña):
             serializer = UsuarioSerializer(user)
-            return Response(serializer.data)
+            return Response(serializer.data, status=status.HTTP_200_OK)
         else:
-            return Response({'error': 'Credenciales inválidas.'}, status=400)
+            return Response({'error': 'Credenciales inválidas.'}, status=status.HTTP_400_BAD_REQUEST)
     except Usuario.DoesNotExist:
-        return Response({'error': 'Usuario no encontrado.'}, status=404)
+        return Response({'error': 'Usuario no encontrado.'}, status=status.HTTP_404_NOT_FOUND)
+    except Exception as e:
+        logger.error(f"Unexpected error: {e}")
+        return Response({'error': 'Ocurrió un error inesperado.'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

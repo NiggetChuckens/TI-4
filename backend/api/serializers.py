@@ -2,9 +2,18 @@ from rest_framework import serializers
 from .models import Usuario, Gerente, Repartidor, Producto, Pedido, Envio, Notificacion
 
 class UsuarioSerializer(serializers.ModelSerializer):
+    contraseña = serializers.CharField(write_only=True, required=True, min_length=6)
+
     class Meta:
         model = Usuario
         fields = ['id_usuario', 'nombre', 'apellido', 'email', 'contraseña']
+
+    def validate_contraseña(self, value):
+        # Add custom password validators if needed
+        if len(value) < 6:
+            raise serializers.ValidationError("La contraseña debe tener al menos 6 caracteres.")
+        # Example: Add more validations (e.g., complexity)
+        return value
 
 class GerenteSerializer(serializers.ModelSerializer):
     usuario = UsuarioSerializer()
