@@ -18,14 +18,10 @@ export class LoginPage {
   constructor(private navCtrl: NavController, private http: HttpClient) {}
 
   // Función auxiliar para almacenar los datos de usuario
-  storeUserData(userId: string, userType: string, rememberMe: boolean) {
-    if (rememberMe) {
-      localStorage.setItem('userId', userId);
-      localStorage.setItem('userType', userType);
-    } else {
-      sessionStorage.setItem('userId', userId);
-      sessionStorage.setItem('userType', userType);
-    }
+  storeUserData(userId: string, userType: 'gerente' | 'repartidor' | 'usuario', rememberMe: boolean) {
+    const storage = rememberMe ? localStorage : sessionStorage;
+    storage.setItem('userId', userId);
+    storage.setItem('userType', userType);
   }
 
   handleLogin() {

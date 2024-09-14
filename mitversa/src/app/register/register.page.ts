@@ -30,9 +30,10 @@ export class RegisterPage {
       return;
     }
     this.isLoading = true;
+    const [nombre, ...apellidoParts] = this.fullName.split(' ');
     const userData = {
-      nombre: this.fullName.split(' ')[0],
-      apellido: this.fullName.split(' ')[1] || '',
+      nombre,
+      apellido: apellidoParts.join(' '),
       email: this.email,
       contraseña: this.password,
       confirmar_contraseña: this.confirmPassword

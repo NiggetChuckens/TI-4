@@ -38,7 +38,7 @@
           </ion-item>
           <ion-button expand="block" type="submit" [disabled]="!loginForm.form.valid || isLoading" class="ion-margin-top">
             <ion-icon name="log-in-outline" slot="start"></ion-icon>
-            Login
+            {{ isLoading ? 'Logging in...' : 'Login' }}
           </ion-button>
         </form>
         <ion-spinner *ngIf="isLoading" name="crescent"></ion-spinner>
