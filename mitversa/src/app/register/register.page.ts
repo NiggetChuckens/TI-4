@@ -63,7 +63,7 @@ export class RegisterPage {
             animationDirection: 'back'
           });
         }, 3000);
-      } 
+      }   
     })
     .catch(error => {
       this.isLoading = false;
@@ -78,4 +78,5 @@ export class RegisterPage {
       animationDirection: 'forward'
     });
   }
+  
 }
