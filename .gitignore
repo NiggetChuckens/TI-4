@@ -2,3 +2,5 @@ mitversa/node_modules
 env/
 
 backend/backend/__pycache__/
+
+backend/api/__pycache__/

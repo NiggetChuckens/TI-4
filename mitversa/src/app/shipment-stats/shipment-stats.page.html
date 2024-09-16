@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button>
+        <ion-icon slot="icon-only" name="person-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Envios</ion-title>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon slot="icon-only" name="menu-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-segment value="envio" class="ion-margin-bottom">
+    <ion-segment-button value="envio">
+      <ion-label>Envio de bultos</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="calculadora">
+      <ion-label>Calculadora de precios</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="recorridos">
+      <ion-label>Recorridos</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <h1 class="ion-margin-bottom">Envios</h1>
+
+  <div class="chart-container">
+    <canvas #barChart></canvas>
+  </div>
+
+  <h2 class="ion-margin-top ion-margin-bottom">Variación de precios</h2>
+
+  <div class="chart-container">
+    <canvas #lineChart></canvas>
+  </div>
+</ion-content>

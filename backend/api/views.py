@@ -73,10 +73,19 @@ def login_user(request):
     data = request.data
     try:
         user = Usuario.objects.get(email=data['email'])
-        if user.contraseña == data['contraseña']:
-            serializer = UsuarioSerializer(user)
-            return Response(serializer.data)
-        else:
+        if user.contraseña != data['contraseña']:
             return Response({'error': 'Credenciales inválidas.'}, status=400)
+        try:
+            gerente = Gerente.objects.get(usuario=user)
+            serializer = GerenteSerializer(gerente)
+            return Response(serializer.data)
+        except Exception:
+            try:
+                Repartidor = Repartidor.objects.get(usuario=user)
+                serializer = RepartidorSerializer(Repartidor)
+                return Response(serializer.data)
+            except Exception:
+                serializer = UsuarioSerializer(user)
+                return Response(serializer.data)
     except Usuario.DoesNotExist:
         return Response({'error': 'Usuario no encontrado.'}, status=404)
