@@ -1,1 +1,5 @@
 Django>=5.1
+djangorestframework
+mysqlclient
+djangorestframework-simplejwt
+prettytable
