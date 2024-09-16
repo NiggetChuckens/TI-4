@@ -1,5 +1,7 @@
-Django>=5.1
-djangorestframework
-mysqlclient
+django==5.1
+django-cors-headers
+django-allauth
+django_rest_framework
+python-dotenv
+prettytables
 djangorestframework-simplejwt
-prettytable
