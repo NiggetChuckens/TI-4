@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http'; // Importa HttpClient para hacer solicitudes HTTP
+import { NavController } from '@ionic/angular'; // Importa NavController para la navegación
 
 @Component({
   selector: 'app-page3',
@@ -6,23 +8,48 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./perfil.page.scss'],
 })
 export class perfilPage implements OnInit {
-  user = {
-    name: 'Michael Scott',
-    email: 'michaelscott@example.com',
-    phone: '+1 (555) 123-4567',
-    location: 'San Francisco, CA',
-    lastLogin: '2023-05-10 14:30',
-    profilePicture: '/assets/placeholder-avatar.png',
-  };
+  user: any = {
+  }; // Definir un objeto vacío para almacenar los datos del usuario
 
-  constructor() {}
+  constructor(private http: HttpClient, private navCtrl: NavController) {} // Inyectar HttpClient y NavController
 
   ngOnInit() {
-    // Initialize any necessary data or perform any required actions
+    this.getUserData();
   }
 
+  getUserData() {
+    const userId = sessionStorage.getItem('userId');
+    console.log('UserId obtenido:', userId); // Verifica que el userId sea correcto
+  
+    if (userId) {
+      this.http.get(`http://127.0.0.1:8000/api/usuarios/${userId}`)
+        .subscribe((data: any) => {
+          console.log('Datos recibidos del servidor:', data); // Verifica los datos recibidos del servidor
+          this.user = {
+            id_usuario: data.id_usuario,
+            nombre: data.nombre,
+            apellido: data.apellido,
+            email: data.email
+          };
+        }, error => {
+          console.error('Error al obtener los datos del usuario:', error);
+        });
+    } else {
+      console.log('No se encontró el userId en sessionStorage');
+    }
+  }
+  
   handleLogout() {
     console.log('Logout clicked');
-    // Implement logout logic here
+    
+    // Eliminar el estado de sesión de sessionStorage
+    sessionStorage.removeItem('isLoggedIn');
+    sessionStorage.removeItem('userId'); // Eliminar el ID del usuario
+
+    // Redirigir al usuario a la página de login
+    this.navCtrl.navigateRoot('/tabs/login').then(() => {
+      // Recargar la página para actualizar los tabs
+      window.location.reload();
+    });
   }
 }

@@ -1,20 +1,28 @@
 import { Component } from '@angular/core';
 import { NavController } from '@ionic/angular';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
   templateUrl: 'login.page.html',
   styleUrls: ['login.page.scss']
 })
-export class loginPage {
-  email: string = '';
-  password: string = '';
-  rememberMe: boolean = false;
-  isLoading: boolean = false;
-  message: string = '';
-  isError: boolean = false;
+export class LoginPage {
+  email = '';
+  password = '';
+  rememberMe = false;
+  isLoading = false;
+  message = '';
+  isError = false;
 
-  constructor(private navCtrl: NavController) {}
+  constructor(private navCtrl: NavController, private http: HttpClient) {}
+
+  // Función auxiliar para almacenar los datos de usuario
+  storeUserData(userId: string, userType: 'gerente' | 'repartidor' | 'usuario', rememberMe: boolean) {
+    const storage = rememberMe ? localStorage : sessionStorage;
+    storage.setItem('userId', userId);
+    storage.setItem('userType', userType);
+  }
 
   handleLogin() {
     if (!this.email || !this.password) {
@@ -29,33 +37,44 @@ export class loginPage {
       contraseña: this.password
     };
 
-    fetch('http://127.0.0.1:8000/api/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
+    this.http.post('http://127.0.0.1:8000/api/login', loginData).subscribe(
+      (data: any) => {
+        this.isLoading = false;
+        console.log(data); // Verifica la estructura de la respuesta
+
+        if (data.error) {
+          this.isError = true;
+          this.message = data.error;
+        } else {
+          this.isError = false;
+          this.message = 'Login successful';
+          
+          const isLoggedIn = !!(data.id_usuario || data.id_repartidor || data.id_gerente);
+          sessionStorage.setItem('isLoggedIn', isLoggedIn.toString());
+
+          // Verificar y almacenar los datos según el tipo de usuario
+          if (data.id_gerente) {
+            this.storeUserData(data.id_gerente, 'gerente', this.rememberMe);
+          } else if (data.id_repartidor) {
+            this.storeUserData(data.id_repartidor, 'repartidor', this.rememberMe);
+          } else if (data.id_usuario) {
+            this.storeUserData(data.id_usuario, 'usuario', this.rememberMe);
+          } else {
+            console.error('No se encontró un ID válido en la respuesta');
+          }
+          
+          // Redirigir al usuario a la página de home
+          this.navCtrl.navigateRoot('/tabs/user-home').then(() => {
+            window.location.reload(); // Recargar para que se actualicen los tabs basados en sessionStorage
+          });
+        }
       },
-      body: JSON.stringify(loginData)
-    })
-    .then(response => response.json())
-    .then(data => {
-      this.isLoading = false;
-      if (data.error) {
+      error => {
+        this.isLoading = false;
         this.isError = true;
-        this.message = data.error;
-      } else {
-        this.isError = false;
-        this.message = 'Login successful';
-        this.navCtrl.navigateForward('/tabs/user-home', {
-          animated: true,
-          animationDirection: 'forward'
-        });
+        this.message = 'Error: ' + error.message;
       }
-    })
-    .catch(error => {
-      this.isLoading = false;
-      this.isError = true;
-      this.message = 'Error: ' + error;
-    });
+    );
   }
 
   navigateToRegister() {

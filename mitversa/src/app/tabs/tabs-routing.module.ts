@@ -15,33 +15,18 @@ const routes: Routes = [
         path: 'register',
         loadChildren: () => import('../register/register.module').then(m => m.RegisterPageModule)
       },
+      
       {
-        path: 'perfil',
-        loadChildren: () => import('../perfil/perfil.module').then(m => m.perfilPageModule)
-      },
-      {
-      path: 'user-home',
+        path: 'user-home',
         loadChildren: () => import('../user-home/user-home.module').then(m => m.UserHomePageModule)
       },
       {
-        path: 'qrscanner',
-        loadChildren: () => import('../product-scanner/product-scanner.module').then(m => m.ProductScannerPageModule)
+        path: 'user-pedidos',
+        loadChildren: () => import('../user-pedidos/user-pedidos.module').then(m => m.UserPedidosPageModule)
       },
       {
-        path: 'search',
-        loadChildren: () => import('../search/search.module').then(m => m.SearchPageModule)
-      },
-      {
-        path: 'history',
-        loadChildren: () => import('../history/history.module').then(m => m.HistoryPageModule)
-      },
-      {
-        path: 'tracking',
-        loadChildren: () => import('../tracking/tracking.module').then(m => m.TrackingPageModule)
-      },
-      {
-        path: 'shipment-stats',
-        loadChildren: () => import('../shipment-stats/shipment-stats.module').then(m => m.ShipmentStatsPageModule)
+        path: 'perfil',
+        loadChildren: () => import('../perfil/perfil.module').then(m => m.perfilPageModule)
       },
       {
         path: '',
@@ -56,6 +41,7 @@ const routes: Routes = [
     pathMatch: 'full'
   }
 ];
+
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

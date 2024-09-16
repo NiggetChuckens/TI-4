@@ -25,31 +25,43 @@ const routes: Routes = [
   {
     path: 'tabs',
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
-  },  {
+  },
+  {
     path: 'user-home',
     loadChildren: () => import('./user-home/user-home.module').then( m => m.UserHomePageModule)
   },
   {
-    path: 'product-scanner',
-    loadChildren: () => import('./product-scanner/product-scanner.module').then( m => m.ProductScannerPageModule)
+    path: '',
+    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
   },
   {
-    path: 'search',
-    loadChildren: () => import('./search/search.module').then( m => m.SearchPageModule)
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule)
   },
   {
-    path: 'history',
-    loadChildren: () => import('./history/history.module').then( m => m.HistoryPageModule)
+    path: 'register',
+    loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
   },
   {
-    path: 'tracking',
-    loadChildren: () => import('./tracking/tracking.module').then( m => m.TrackingPageModule)
+    path: 'repartidores',
+    loadChildren: () => import('./repartidores/repartidores.module').then( m => m.RepartidoresPageModule)
   },
   {
-    path: 'shipment-stats',
-    loadChildren: () => import('./shipment-stats/shipment-stats.module').then( m => m.ShipmentStatsPageModule)
-  }
-
+    path: 'perfil',
+    loadChildren: () => import('./perfil/perfil.module').then( m => m.perfilPageModule)
+  },
+  {
+    path: 'tabs',
+    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
+  },
+  {
+    path: 'user-home',
+    loadChildren: () => import('./user-home/user-home.module').then( m => m.UserHomePageModule)
+  },
+  {
+    path: 'user-pedidos',
+    loadChildren: () => import('./user-pedidos/user-pedidos.module').then( m => m.UserPedidosPageModule)
+  },
 ];
 @NgModule({
   imports: [
