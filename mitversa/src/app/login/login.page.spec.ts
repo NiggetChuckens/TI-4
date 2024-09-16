@@ -3,19 +3,19 @@ import { IonicModule } from '@ionic/angular';
 
 import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
 
-import { LoginPage } from './login.page';
+import { loginPage } from './login.page';
 
-describe('LoginPage', () => {
-  let component: LoginPage;
-  let fixture: ComponentFixture<LoginPage>;
+describe('loginPage', () => {
+  let component: loginPage;
+  let fixture: ComponentFixture<loginPage>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [LoginPage],
+      declarations: [loginPage],
       imports: [IonicModule.forRoot(), ExploreContainerComponentModule]
     }).compileComponents();
 
-      fixture = TestBed.createComponent(LoginPage);
+    fixture = TestBed.createComponent(loginPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
