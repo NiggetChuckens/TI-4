@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="profile-header" *ngIf="user.nombre"> <!-- Mostramos si el nombre existe -->
+    <ion-avatar>
+      <img src="/assets/placeholder-avatar.png" alt="Profile Picture">
+    </ion-avatar>
+    <h1>{{ user.nombre }} {{ user.apellido }}</h1>
+    <ion-chip color="primary">
+      <ion-icon name="person-circle-outline"></ion-icon>
+      <ion-label>Active User</ion-label>
+    </ion-chip>
+  </div>
+
+  <ion-card *ngIf="user.email">
+    <ion-card-content>
+      <ion-list lines="none">
+        <ion-item>
+          <ion-icon name="mail-outline" slot="start" color="primary"></ion-icon>
+          <ion-label>
+            <h2>Email</h2>
+            <p>{{ user.email }}</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+
+  <div class="logout-button">
+    <ion-button expand="block" color="danger" (click)="handleLogout()">
+      <ion-icon name="log-out-outline" slot="start"></ion-icon>
+      Logout
+    </ion-button>
+  </div>
+</ion-content>

@@ -1,0 +1,50 @@
+ion-content {
+    --background: #f0f4f7; /* Fondo general del contenido */
+  }
+  
+  .pedido-item {
+    border-radius: 12px;
+    margin: 10px;
+    color: white;
+    display: flex;
+    align-items: center;
+    --background: transparent; /* Establece el fondo transparente para los items */
+  }
+  
+  /* Estado Entregado (Verde) */
+  .estado-entregado {
+    --background: #28a745 !important; /* Fondo verde para entregado */
+    color: white !important; /* Texto en blanco */
+  }
+  
+  /* Estado En Tránsito (Amarillo) */
+  .estado-transito {
+    --background: #ffc107 !important; /* Fondo amarillo para en tránsito */
+    color: black !important; /* Texto negro para mayor legibilidad */
+  }
+  
+  /* Estado No Entregado (Rojo) */
+  .estado-no-entregado {
+    --background: #dc3545 !important; /* Fondo rojo para no entregado */
+    color: white !important; /* Texto en blanco */
+  }
+  
+  /* Estado Devuelto (Morado) */
+  .estado-devuelto {
+    --background: #6f42c1 !important; /* Fondo morado para devuelto */
+    color: white !important; /* Texto en blanco */
+  }
+  
+  .pedido-label {
+    text-align: center;
+    flex-grow: 1;
+  }
+  
+  .pedido-item h2, .pedido-item p {
+    color: inherit; /* Asegúrate de que el color del texto se herede correctamente */
+  }
+  
+  ion-button {
+    color: white; /* Icono blanco */
+  }
+  
