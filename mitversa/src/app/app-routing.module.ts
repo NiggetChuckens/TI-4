@@ -62,6 +62,10 @@ const routes: Routes = [
     path: 'user-pedidos',
     loadChildren: () => import('./user-pedidos/user-pedidos.module').then( m => m.UserPedidosPageModule)
   },
+  {
+    path: 'scanner',
+    loadChildren: () => import('./scanner/scanner.module').then( m => m.ScannerPageModule)
+  },
 ];
 @NgModule({
   imports: [
