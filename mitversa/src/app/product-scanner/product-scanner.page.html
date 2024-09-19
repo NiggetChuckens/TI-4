@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Agregar productos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="qr-scanner" (click)="handleScan()">
+    <div class="qr-frame">
+      <div class="qr-corner top-left"></div>
+      <div class="qr-corner top-right"></div>
+      <div class="qr-corner bottom-left"></div>
+      <div class="qr-corner bottom-right"></div>
+    </div>
+    <ion-icon name="qr-code-outline" class="qr-icon"></ion-icon>
+  </div>
+
+  <div class="quantity-selector">
+    <ion-label>{{ quantity }} unidades</ion-label>
+    <ion-range min="0" max="100" step="1" [(ngModel)]="quantity" (ionChange)="updateQuantity($event)"></ion-range>
+  </div>
+
+  <ion-button expand="block" (click)="handleAddQuantity()">
+    Agregar cantidad
+  </ion-button>
+</ion-content>

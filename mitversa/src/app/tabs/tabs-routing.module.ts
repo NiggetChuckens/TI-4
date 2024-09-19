@@ -29,6 +29,12 @@ const routes: Routes = [
         loadChildren: () => import('../perfil/perfil.module').then(m => m.perfilPageModule)
       },
       {
+        path: 'scanner',
+        loadChildren: () => import('../scanner/scanner.module').then(m => m.ScannerPageModule)
+      },
+
+
+      {
         path: '',
         redirectTo: '/tabs/login',
         pathMatch: 'full'
