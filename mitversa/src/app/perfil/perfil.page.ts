@@ -16,6 +16,10 @@ export class perfilPage implements OnInit {
   ngOnInit() {
     this.getUserData();
   }
+<<<<<<< HEAD
+=======
+  
+>>>>>>> origin/Dev-Christian
 
   getUserData() {
     const userId = sessionStorage.getItem('userId');

@@ -1,0 +1,24 @@
+ion-toolbar {
+    --background: #4FC3F7;
+    --color: #ffffff;
+  }
+  
+  ion-segment {
+    --background: #ffffff;
+    ion-segment-button {
+      --color: #4FC3F7;
+      --color-checked: #ffffff;
+      --background-checked: #4FC3F7;
+    }
+  }
+  
+  h1, h2 {
+    color: #333333;
+    font-weight: 300;
+  }
+  
+  .chart-container {
+    position: relative;
+    height: 200px;
+    width: 100%;
+  }
