@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-from django.conf import settings
->>>>>>> origin/Dev-Christian
 from django.core.management.base import BaseCommand
 from api.models import Usuario, Gerente, Repartidor, Producto, Pedido, Envio, Notificacion
 from prettytable import PrettyTable
@@ -10,11 +6,6 @@ class Command(BaseCommand):
     help = 'List all data from the database in a formatted way'
 
     def handle(self, *args, **kwargs):
-<<<<<<< HEAD
-=======
-        db_name = settings.DATABASES['default']['NAME']
-        self.stdout.write(self.style.SUCCESS(f'Database: {db_name}'))
->>>>>>> origin/Dev-Christian
         self.list_data('Usuarios', Usuario, ['ID', 'Nombre', 'Apellido', 'Email'], ['id_usuario', 'nombre', 'apellido', 'email'])
         self.list_data('Gerentes', Gerente, ['ID', 'Nombre', 'Apellido', 'Email', 'Usuario ID'], ['id_gerente', 'nombre', 'apellido', 'email', 'id_usuario.id_usuario'])
         self.list_data('Repartidores', Repartidor, ['ID', 'Nombre', 'Apellido', 'Email', 'Usuario ID'], ['id_repartidor', 'nombre', 'apellido', 'email', 'id_usuario.id_usuario'])

@@ -23,24 +23,11 @@ const routes: Routes = [
       {
         path: 'user-pedidos',
         loadChildren: () => import('../user-pedidos/user-pedidos.module').then(m => m.UserPedidosPageModule)
-<<<<<<< HEAD
-      },
-      {
-        path: 'perfil',
-        loadChildren: () => import('../perfil/perfil.module').then(m => m.perfilPageModule)
-=======
->>>>>>> origin/Dev-Christian
       },
       {
         path: 'perfil',
         loadChildren: () => import('../perfil/perfil.module').then(m => m.perfilPageModule)
       },
-      {
-        path: 'scanner',
-        loadChildren: () => import('../scanner/scanner.module').then(m => m.ScannerPageModule)
-      },
-
-
       {
         path: '',
         redirectTo: '/tabs/login',
