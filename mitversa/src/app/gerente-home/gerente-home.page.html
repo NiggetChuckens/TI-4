@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Dashboard Gerente</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="chart-container">
+    
+    <!-- Gráfico de Estado de Envíos -->
+    <ion-card class="chart-card">
+      <ion-card-header>
+        <ion-card-title>Estado de Envíos</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <div echarts [options]="envioStatusChart" class="chart"></div>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Gráfico de Comparativa Mensual de Envíos -->
+    <ion-card class="chart-card">
+      <ion-card-header>
+        <ion-card-title>Comparativa Mensual de Envíos</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <div echarts [options]="envioComparativaMensualChart" class="chart"></div>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Gráfico de Porcentaje de Entregas por Estado -->
+    <ion-card class="chart-card">
+      <ion-card-header>
+        <ion-card-title>Porcentaje de Entregas por Estado</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <div echarts [options]="envioStatusPercentageChart" class="chart"></div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

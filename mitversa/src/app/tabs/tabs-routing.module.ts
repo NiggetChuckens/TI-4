@@ -32,6 +32,11 @@ const routes: Routes = [
         path: 'scanner',
         loadChildren: () => import('../scanner/scanner.module').then(m => m.ScannerPageModule)
       },
+      {
+      path: 'gerente-home',
+      loadChildren: () => import('../gerente-home/gerente-home.module').then(m=> m.GerenteHomePageModule)
+      },
+      
 
 
       {
