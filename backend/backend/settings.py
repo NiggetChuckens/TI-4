@@ -9,7 +9,7 @@ SECRET_KEY = 'django-insecure-hr@mip6e(0!z#knv!^pkqng(*b_#8v*s-39(jg@9$40zwxp4iv
 
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", "192.168.1.167", "0.0.0.0","192.168.1.99"]
+ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -97,10 +97,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOW_ALL_ORIGINS = True
 
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:8100",  
-    "http://127.0.0.1:8100",  
-    "http://192.168.1.167:8100",
-    "http://0.0.0.0:8100" ,
-    "http://192.168.1.99:8100" 
-]
+CORS_ALLOWED_ORIGINS = []

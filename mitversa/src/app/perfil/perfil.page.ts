@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http'; // Importa HttpClient para hacer solicitudes HTTP
 import { NavController } from '@ionic/angular'; // Importa NavController para la navegación
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-page3',
@@ -23,7 +24,7 @@ export class perfilPage implements OnInit {
     console.log('UserId obtenido:', userId); // Verifica que el userId sea correcto
   
     if (userId) {
-      this.http.get(`http://127.0.0.1:8000/api/usuarios/${userId}`)
+      this.http.get(`${environment.apiUrl}/api/usuarios/${userId}`)
         .subscribe((data: any) => {
           console.log('Datos recibidos del servidor:', data); // Verifica los datos recibidos del servidor
           this.user = {

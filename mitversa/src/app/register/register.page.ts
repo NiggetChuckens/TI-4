@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from '@ionic/angular';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-register',
@@ -37,7 +38,7 @@ export class RegisterPage {
       confirmar_contraseña: this.confirmPassword // Add this line
     };
 
-    fetch('http://127.0.0.1:8000/api/register', {
+    fetch(`${environment.apiUrl}/api/register`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
