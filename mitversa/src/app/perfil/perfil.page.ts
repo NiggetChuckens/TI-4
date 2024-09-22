@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http'; // Importa HttpClient para hacer solicitudes HTTP
 import { NavController } from '@ionic/angular'; // Importa NavController para la navegación
-import { environment } from 'src/environments/environment.prod';
+import { environment } from 'src/environments/environment.prod'; //Importa la dirección ip del api en django
 
 @Component({
   selector: 'app-page3',
@@ -24,8 +24,13 @@ export class perfilPage implements OnInit {
     console.log('UserId obtenido:', userId); // Verifica que el userId sea correcto
   
     if (userId) {
-      this.http.get(`${environment.apiUrl}/api/usuarios/${userId}`)
-        .subscribe((data: any) => {
+      fetch(`${environment.apiUrl}/api/usuarios/${userId}`, {
+        headers: {
+          'ngrok-skip-browser-warning': 'true' // Agregar la cabecera para evitar el error de CORS
+        }
+      })
+        .then(response => response.json())
+        .then(data => {
           console.log('Datos recibidos del servidor:', data); // Verifica los datos recibidos del servidor
           this.user = {
             id_usuario: data.id_usuario,
@@ -33,7 +38,8 @@ export class perfilPage implements OnInit {
             apellido: data.apellido,
             email: data.email
           };
-        }, error => {
+        })
+        .catch(error => {
           console.error('Error al obtener los datos del usuario:', error);
         });
     } else {
