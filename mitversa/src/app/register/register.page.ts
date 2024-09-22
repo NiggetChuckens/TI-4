@@ -35,7 +35,7 @@ export class RegisterPage {
       apellido: this.fullName.split(' ')[1] || '',
       email: this.email,
       contraseña: this.password,
-      confirmar_contraseña: this.confirmPassword // Add this line
+      confirmar_contraseña: this.confirmPassword,
     };
 
     fetch(`${environment.apiUrl}/api/register`, {
@@ -58,6 +58,8 @@ export class RegisterPage {
       } else {
         this.isError = false;
         this.message = 'Usuario registrado correctamente.';
+        // Limpieza del formulario
+        this.resetForm();
         setTimeout(() => {
           this.navCtrl.navigateBack('/tabs/login', {
             animated: true,
@@ -71,6 +73,14 @@ export class RegisterPage {
       this.isError = true;
       this.message = 'Error: ' + error;
     });
+  }
+
+  resetForm() {
+    this.fullName = '';
+    this.email = '';
+    this.password = '';
+    this.confirmPassword = '';
+    // Restablecer otros campos si es necesario
   }
 
   navigateToLogin() {

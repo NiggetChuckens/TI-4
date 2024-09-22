@@ -1,6 +1,12 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>Registrarse</ion-title>
+    <ion-buttons slot="start">
+      <!-- Botón de flecha para retroceder -->
+      <ion-button (click)="goBack()">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Agregar Repartidor</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -9,7 +15,7 @@
     <ion-card>
       <ion-card-header>
         <ion-text color="primary">
-          <h2 class="ion-text-center">Crear Cuenta</h2>
+          <h2 class="ion-text-center">Nuevo Repartidor</h2>
         </ion-text>
       </ion-card-header>
       <ion-card-content>
@@ -20,7 +26,9 @@
         >
           {{ message }}
         </div>
-        <form (ngSubmit)="handleRegister()" #registerForm="ngForm">
+
+        <!-- Formulario -->
+        <form (ngSubmit)="handleAddRepartidor()" #repartidorForm="ngForm">
           <ion-grid>
             <!-- Nombre Completo -->
             <ion-row>
@@ -74,7 +82,8 @@
               <ion-col size="12" size-md="6">
                 <ion-item>
                   <ion-label position="floating">
-                    <ion-icon name="lock-closed-outline"></ion-icon> Confirmar Contraseña
+                    <ion-icon name="lock-closed-outline"></ion-icon>
+                    Confirmar Contraseña
                   </ion-label>
                   <ion-input
                     type="password"
@@ -86,34 +95,61 @@
               </ion-col>
             </ion-row>
 
+            <!-- Patente del Vehículo -->
+            <ion-row>
+              <ion-col size="12">
+                <ion-item>
+                  <ion-label position="floating">
+                    <ion-icon name="car-outline"></ion-icon> Patente del Vehículo
+                  </ion-label>
+                  <ion-input
+                    type="text"
+                    name="vehiclePlate"
+                    [(ngModel)]="vehiclePlate"
+                    required
+                  ></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+
+            <!-- Foto de Perfil -->
+            <ion-row class="ion-justify-content-center">
+              <ion-col size="12" class="ion-text-center">
+                <ion-button
+                  (click)="selectProfileImage()"
+                  color="secondary"
+                  expand="block"
+                >
+                  <ion-icon name="camera-outline" slot="start"></ion-icon>
+                  Subir Fotografía
+                </ion-button>
+                <!-- Mostrar imagen seleccionada si existe -->
+                <ion-img *ngIf="profileImage" [src]="profileImage"></ion-img>
+              </ion-col>
+            </ion-row>
+
             <!-- Botón de Registro -->
             <ion-row>
               <ion-col size="12">
                 <ion-button
                   expand="block"
                   type="submit"
-                  [disabled]="!registerForm.form.valid || isLoading"
-                  class="ion-margin-top"
+                  [disabled]="
+                    !repartidorForm.form.valid || isLoading
+                  "
                 >
                   <ion-icon name="person-add-outline" slot="start"></ion-icon>
-                  Registrarse
+                  Registrar Repartidor
                 </ion-button>
-              </ion-col>
-            </ion-row>
-
-            <!-- Spinner de carga -->
-            <ion-row *ngIf="isLoading">
-              <ion-col size="12" class="ion-text-center">
-                <ion-spinner name="crescent"></ion-spinner>
               </ion-col>
             </ion-row>
           </ion-grid>
         </form>
 
-        <!-- Enlace para iniciar sesión -->
-        <p class="login-text">
-          ¿Ya tienes una cuenta? <b><a (click)="navigateToLogin()" class="bold-text">Iniciar sesión</a></b>
-        </p>
+        <!-- Spinner de carga -->
+        <div class="spinner-container" *ngIf="isLoading">
+          <ion-spinner name="crescent"></ion-spinner>
+        </div>
       </ion-card-content>
     </ion-card>
   </div>

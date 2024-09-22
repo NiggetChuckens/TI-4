@@ -1,127 +1,102 @@
 ion-content {
   --background: linear-gradient(135deg, var(--ion-color-primary), var(--ion-color-secondary));
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .register-container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  width: 100%;
-  height: 100%;
-  padding: 1rem; /* Añadido para controlar los márgenes en pantallas pequeñas */
+  align-items: center;
+  padding: 16px;
 }
 
 ion-card {
   width: 100%;
-  max-width: 400px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
   border-radius: 12px;
-  padding: 1rem; /* Añadido para mantener el espacio dentro de la tarjeta */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* Fondo semitransparente para legibilidad */
+  background-color: rgba(255, 255, 255, 0.9);
 }
 
-form {
-  ion-item {
-    --background: transparent;
-    --border-color: rgba(255, 255, 255, 0.1);
-    --highlight-height: 0;
-    margin-bottom: 16px;
+ion-card-header {
+  background-color: transparent;
+}
 
-    &:last-of-type {
-      margin-bottom: 0;
-    }
-  }
+ion-card-header h2 {
+  margin: 0;
+  font-size: 24px;
+}
 
-  ion-input {
-    --color: var(--ion-color-dark);
-    --placeholder-color: var(--ion-color-medium);
-  }
+ion-item {
+  --background: transparent;
+  --border-color: var(--ion-color-medium);
+  --highlight-height: 0;
+}
 
-  ion-toggle {
-    --background: var(--ion-color-medium);
-    --background-checked: var(--ion-color-primary);
-    --handle-background: var(--ion-color-light);
-    --handle-background-checked: var(--ion-color-light);
-  }
+ion-label {
+  color: var(--ion-color-dark);
+}
+
+ion-input {
+  --color: var(--ion-color-dark);
+}
+
+ion-button {
+  margin-top: 16px;
 }
 
 .login-text {
-  color: white;
-  margin-top: 20px;
-  color: var(--ion-color-light);
   text-align: center;
-
-  a {
-    color: var(--ion-color-light);
-    font-weight: bold;
-    text-decoration: none;
-    cursor: pointer;
-    transition: color 0.3s;
-  }
-
-  a:hover {
-    color: var(--ion-color-primary);
-  }
+  margin-top: 16px;
+  /* Cambiamos el color a un tono oscuro para mayor legibilidad */
+  color: var(--ion-color-dark);
 }
 
-/* Ajustes responsivos para pantallas pequeñas */
-@media (max-width: 576px) {
-  ion-card {
-    width: 90%;
-    padding: 1rem;
-  }
-  form ion-item {
-    --padding-start: 0.5rem;
-  }
+.login-text a {
+  /* Ajustamos el color del enlace a un tono primario para que destaque */
+  color: var(--ion-color-primary);
+  font-weight: bold;
+  text-decoration: none;
 }
 
-/* Ajustes para pantallas medianas */
-@media (min-width: 576px) {
-  ion-card {
-    width: 85%;
-  }
-}
-
-/* Pantallas un poco más grandes */
-@media (min-width: 768px) {
-  ion-card {
-    width: 75%;
-  }
-}
-
-/* Pantallas aún más grandes */
-@media (min-width: 992px) {
-  ion-card {
-    width: 60%;
-  }
-}
-
-/* Muy grandes */
-@media (min-width: 1200px) {
-  ion-card {
-    width: 50%;
-  }
+.error-message,
+.success-message {
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  text-align: center;
 }
 
 .error-message {
   background-color: #f8d7da;
   color: #721c24;
-  padding: 10px;
-  border-radius: 5px;
-  margin-bottom: 15px;
-  text-align: center;
 }
 
 .success-message {
   background-color: #d4edda;
   color: #155724;
-  padding: 10px;
-  border-radius: 5px;
-  margin-bottom: 15px;
-  text-align: center;
 }
 
+/* Ajustes para legibilidad sobre el fondo */
+ion-card,
+ion-card-content,
+ion-label,
+ion-input,
+.login-text {
+  color: var(--ion-color-dark);
+}
 
+/* Responsividad */
+@media (min-width: 576px) {
+  ion-col[size-md='6'] {
+    max-width: 48%;
+    flex: 0 0 48%;
+  }
+}
+
+@media (max-width: 575.98px) {
+  ion-col[size='12'] {
+    max-width: 100%;
+    flex: 0 0 100%;
+  }
+}

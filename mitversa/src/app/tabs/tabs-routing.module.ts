@@ -36,7 +36,14 @@ const routes: Routes = [
       path: 'gerente-home',
       loadChildren: () => import('../gerente-home/gerente-home.module').then(m=> m.GerenteHomePageModule)
       },
-      
+      {
+        path: 'repartidores',
+        loadChildren: () => import('../repartidores/repartidores.module').then(m=> m.RepartidoresPageModule)
+      },
+      {
+        path: 'add-repartidor',
+        loadChildren: () => import('../add-repartidor/add-repartidor.module').then(m=> m.AddRepartidorPageModule)
+      },
 
 
       {

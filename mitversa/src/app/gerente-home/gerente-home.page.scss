@@ -1,37 +1,30 @@
 .chart-container {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-  }
-  
-  .chart-card {
-    width: 100%;
-    max-width: 800px;
-    margin-bottom: 20px;
-  }
-  
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.chart-card {
+  width: 100%;
+  max-width: 800px;
+  margin-bottom: 20px;
+}
+
+.chart {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
+
+@media (max-width: 768px) {
   .chart {
-    width: 100%;
-    height: 400px;
+    aspect-ratio: 4 / 3;
   }
-  
-  /* Adaptación para pantallas más pequeñas */
-  @media (max-width: 768px) {
-    .chart-card {
-      width: 100%;
-      margin-bottom: 15px;
-    }
-  
-    .chart {
-      height: 300px;
-    }
+}
+
+@media (max-width: 480px) {
+  .chart {
+    aspect-ratio: 1 / 1;
   }
-  
-  @media (max-width: 480px) {
-    .chart {
-      height: 250px;
-    }
-  }
-  
+}
