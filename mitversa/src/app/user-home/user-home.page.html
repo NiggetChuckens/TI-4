@@ -1,26 +1,40 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>Validación de Código</ion-title>
-    <ion-buttons slot="end">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
+    <ion-title>Rastrea tu pedido</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
-  <div class="codigo-container">
-    <!-- Campo para ingresar código de pedido -->
-    <ion-item>
-      <ion-input
-        type="text"
-        placeholder="Ingresar código de pedido"
-        class="input-codigo"
-      ></ion-input>
-    </ion-item>
-
-    <!-- Botón de Validar Código -->
-    <ion-button expand="block"  class="button-codigo">
-      Validar Código
-    </ion-button>
-  </div>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>Ingresa tu numero de seguimiento</ion-card-subtitle>
+      <ion-card-title>Sigue tu pedido</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form (ngSubmit)="onSubmit()" #trackingForm="ngForm">
+        <ion-item>
+          <ion-label position="floating">Tracking Number</ion-label>
+          <ion-input type="text" [(ngModel)]="trackingNumber" name="trackingNumber" required></ion-input>
+        </ion-item>
+        <ion-button expand="block" type="submit" [disabled]="!trackingForm.form.valid">
+          Track Shipment
+        </ion-button>
+      </form>
+      <div *ngIf="currentStatus">
+        <h2>Status: {{ currentStatus }}</h2>
+        <ion-list *ngIf="currentStatus !== 'Not Found'">
+          <ion-item *ngFor="let step of steps">
+            <ion-icon slot="start" [name]="step.icon"></ion-icon>
+            <ion-label>
+              <h2>{{ step.status }}</h2>
+              <p>{{ step.date }}</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </div>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
+
+<ion-footer>
+</ion-footer>

@@ -24,11 +24,12 @@ export class ScannerPage implements OnInit {
 
   scanBarcode() {
     // logica para escanear codigo de barras aqui
-    console.log('Scanning barcode...');
+    console.log('Scanning barcode...'); //test
     
     // simulacion de escaneo de codigo de barras
-    setTimeout(() => {
-      this.scannedCode = 'EXAMPLE123456';
+    // una vez esté listo eliminar el ejemplo
+    setTimeout(() => { // Eliminar el timeout, simplemente mostrar apenas se detecte el codigo
+      this.scannedCode = 'EXAMPLE123456'; //codigo de barra
       this.showResult = true;
     }, 2000);
   }

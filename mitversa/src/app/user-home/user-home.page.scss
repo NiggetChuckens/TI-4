@@ -1,116 +1,113 @@
 ion-content {
-    --background: linear-gradient(135deg, var(--ion-color-primary), var(--ion-color-secondary));
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  --background: var(--ion-color-light);
+}
 
+ion-card {
+  margin: 16px;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+  ion-card-header {
+    background: var(--ion-color-primary);
+    color: var(--ion-color-primary-contrast);
+    padding: 16px;
+
+    ion-card-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+    }
+
+    ion-card-subtitle {
+      font-size: 0.9rem;
+      margin-top: 8px;
+    }
   }
-  
-  .codigo-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    max-width: 400px;
-    padding: 2rem;
-    border-radius: 15px;
-    background-color: rgba(255, 255, 255, 0.8);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    text-align: center;
+
+  ion-card-content {
+    padding: 16px;
   }
-  
-  /* Input item */
-  .input-item {
-    background-color: rgba(255, 255, 255, 0.9);
-    border-radius: 12px;
-    margin-bottom: 1.5rem;
-    width: 100%;
-    max-width: 350px;
-    padding: 0.5rem;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+form {
+  ion-item {
+    --padding-start: 0;
+    --inner-padding-end: 0;
+    --background: transparent;
+
+    ion-label {
+      color: var(--ion-color-medium);
+    }
+
+    ion-input {
+      --background: rgba(var(--ion-color-primary-rgb), 0.1);
+      --padding-start: 16px;
+      --padding-end: 16px;
+      border-radius: 10px;
+      margin-top: 8px;
+    }
   }
-  
-  /* Input */
-  .input-codigo {
-    text-align: center;
-    color: var(--ion-color-dark);
-    font-size: 1.1rem;
-    border-radius: 12px;
+
+  ion-button {
+    margin-top: 24px;
   }
-  
-  /* Botón */
-  .button-codigo {
-    width: 100%;
-    max-width: 350px;
-    border-radius: 15px;
-    font-size: 1.1rem;
+}
+
+// Modal styles
+.shipment-status-modal {
+  --background: var(--ion-color-light);
+
+  ion-header ion-toolbar {
+    --background: var(--ion-color-primary);
+    --color: var(--ion-color-primary-contrast);
+  }
+
+  h2 {
+    color: var(--ion-color-primary);
+    font-size: 1.2rem;
+    margin-bottom: 16px;
+  }
+
+  p {
+    color: var(--ion-color-medium);
+    margin-bottom: 24px;
+  }
+
+  ion-list {
+    background: transparent;
+  }
+
+  ion-item {
+    --padding-start: 0;
+    --inner-padding-end: 0;
+    --background: transparent;
+    --border-color: rgba(var(--ion-color-primary-rgb), 0.1);
+
+    &:last-child {
+      --border-width: 0px;
+    }
+
+    ion-icon {
+      color: var(--ion-color-primary);
+    }
+
+    ion-label {
+      h3 {
+        font-weight: 600;
+        color: var(--ion-color-dark);
+      }
+
+      p {
+        color: var(--ion-color-medium);
+      }
+    }
+  }
+
+  .active {
+    --background: rgba(var(--ion-color-primary-rgb), 0.1);
     font-weight: bold;
-    background: linear-gradient(45deg, var(--ion-color-primary), var(--ion-color-secondary));
-    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.2);
-    color: white;
-    padding: 0.8rem;
-    transition: background 0.3s ease, transform 0.3s ease;
   }
-  
-  /* Hover y active */
-  .button-codigo:hover {
-    transform: translateY(-3px);
-    background: linear-gradient(45deg, var(--ion-color-secondary), var(--ion-color-primary));
+
+  ion-icon[name="checkmark-circle"] {
+    color: var(--ion-color-success);
   }
-  
-  .button-codigo:active {
-    transform: translateY(0);
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Responsividad usando media queries */
-  @media (max-width: 768px) {
-    /* Para pantallas pequeñas (tablets y móviles) */
-    .codigo-container {
-      max-width: 90%; /* Ocupa el 90% del ancho */
-      padding: 1.5rem;
-    }
-  
-    .input-item, .button-codigo {
-      max-width: 100%; /* Los elementos ocupan todo el ancho disponible */
-      font-size: 1rem;
-    }
-  
-    .button-codigo {
-      padding: 0.7rem; /* Ajustamos el padding del botón */
-      font-size: 1rem;
-    }
-  }
-  
-  @media (max-width: 576px) {
-    /* Para móviles pequeños */
-    .codigo-container {
-      max-width: 95%; /* Ocupa casi todo el ancho en pantallas muy pequeñas */
-      padding: 1.2rem;
-    }
-  
-    .input-item, .button-codigo {
-      max-width: 100%;
-      font-size: 0.9rem; /* Disminuimos ligeramente el tamaño del texto */
-    }
-  
-    .button-codigo {
-      padding: 0.6rem;
-      font-size: 0.9rem; /* Tamaño de texto más pequeño en pantallas pequeñas */
-    }
-  }
-  
-  @media (min-width: 1200px) {
-    /* Para pantallas muy grandes */
-    .codigo-container {
-      max-width: 400px; /* Limita el ancho máximo en pantallas grandes */
-      padding: 3rem;
-    }
-  
-    .button-codigo {
-      padding: 1rem;
-      font-size: 1.2rem; /* Botón más grande en pantallas grandes */
-    }
-  }
-  
+}
