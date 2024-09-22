@@ -2,70 +2,48 @@ from rest_framework import serializers
 from .models import Usuario, Gerente, Repartidor, Producto, Pedido, Envio, Notificacion
 
 class UsuarioSerializer(serializers.ModelSerializer):
-    password = serializers.CharField(write_only=True, required=True, min_length=6)
-
     class Meta:
         model = Usuario
-        fields = ['id', 'email', 'nombre', 'apellido', 'password']
-        extra_kwargs = {'password': {'write_only': True}}
-
-    def create(self, validated_data):
-        user = Usuario.objects.create_user(**validated_data)
-        return user
+        fields = ['id_usuario', 'nombre', 'apellido', 'email', 'contraseña']
 
 class GerenteSerializer(serializers.ModelSerializer):
     usuario = UsuarioSerializer()
 
     class Meta:
         model = Gerente
-        fields = ['usuario']
+        fields = ['id', 'usuario']
 
 class RepartidorSerializer(serializers.ModelSerializer):
     usuario = UsuarioSerializer()
 
     class Meta:
         model = Repartidor
-        fields = ['usuario']
+        fields = ['id', 'usuario']
 
 class ProductoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Producto
-        fields = '__all__'
+        fields = ['id', 'nombre', 'descripcion', 'peso']
 
 class PedidoSerializer(serializers.ModelSerializer):
-    producto = ProductoSerializer(read_only=True)
-    producto_id = serializers.PrimaryKeyRelatedField(
-        queryset=Producto.objects.all(), source='producto', write_only=True
-    )
+    producto = ProductoSerializer()
 
     class Meta:
         model = Pedido
-        fields = '__all__'
+        fields = ['id', 'fecha_pedido', 'estado_pedido', 'producto']
 
 class EnvioSerializer(serializers.ModelSerializer):
-    pedido = PedidoSerializer(read_only=True)
-    pedido_id = serializers.PrimaryKeyRelatedField(
-        queryset=Pedido.objects.all(), source='pedido', write_only=True
-    )
-    repartidor = RepartidorSerializer(read_only=True)
-    repartidor_id = serializers.PrimaryKeyRelatedField(
-        queryset=Repartidor.objects.all(), source='repartidor', write_only=True, required=False
-    )
+    pedido = PedidoSerializer()
+    repartidor = RepartidorSerializer()
 
     class Meta:
         model = Envio
-        fields = '__all__'
+        fields = ['id', 'numero_seguimiento', 'direccion_origen', 'direccion_destino', 'fecha_envio', 'estado_envio', 'pedido', 'repartidor']
 
 class NotificacionSerializer(serializers.ModelSerializer):
-    envio = EnvioSerializer(read_only=True)
-    envio_id = serializers.PrimaryKeyRelatedField(
-        queryset=Envio.objects.all(), source='envio', write_only=True
-    )
-    usuario = UsuarioSerializer(read_only=True)
-    usuario_id = serializers.PrimaryKeyRelatedField(
-        queryset=Usuario.objects.all(), source='usuario', write_only=True
-    )
+    envio = EnvioSerializer()
+    usuario = UsuarioSerializer()
 
     class Meta:
         model = Notificacion
-        fields = '__all__'
+        fields = ['id', 'mensaje', 'fecha_envio', 'estado_envio', 'envio', 'usuario']

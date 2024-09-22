@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Scanner</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="scanner-content">
+  <div class="scanner-container">
+    <div class="scanner-header">
+      <h1>Scan Barcode</h1>
+      <p>Position the barcode within the frame to scan</p>
+    </div>
+    
+    <div class="scanner-frame">
+      <div class="camera-feed">
+        <!-- Agregar camara aqui -->
+      </div>
+      
+      <div class="scan-line"></div>
+      
+      <div class="corner top-left"></div>
+      <div class="corner top-right"></div>
+      <div class="corner bottom-left"></div>
+      <div class="corner bottom-right"></div>
+    </div>
+    
+    <div class="scanner-footer">
+      <ion-button expand="block" (click)="toggleFlashlight()">
+        <ion-icon name="flashlight"></ion-icon>
+        Encender linterna
+      </ion-button>
+      
+      <ion-button expand="block" (click)="scanBarcode()">
+        <ion-icon name="scan"></ion-icon>
+        Scanear
+      </ion-button>
+    </div>
+  </div>
+  
+  <ion-modal [isOpen]="showResult" [cssClass]="'floating-modal'">
+    <ng-template>
+      <div class="floating-window">
+        <div class="floating-header">
+          <h2>Scan Result</h2>
+          <ion-button fill="clear" (click)="closeResult()">
+            <ion-icon name="close-outline" slot="icon-only"></ion-icon>
+          </ion-button>
+        </div>
+        <div class="floating-content">
+          <p>Scanned Barcode:</p>
+          <div class="scanned-code">{{ scannedCode }}</div>
+          <ion-button expand="block" (click)="closeResult()"> <!--Redirigir a la pagina de edicion cuando exista -->
+            <ion-icon name="create-outline" slot="start"></ion-icon>
+            Actualizar estado
+          </ion-button>
+        </div>
+      </div>
+    </ng-template>
+  </ion-modal>
+</ion-content>

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from '@ionic/angular';
-import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-register',
@@ -8,15 +8,15 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./register.page.scss'],
 })
 export class RegisterPage {
-  fullName = '';
-  email = '';
-  password = '';
-  confirmPassword = '';
-  isLoading = false;
-  message = '';
-  isError = false;
+  fullName: string = '';
+  email: string = '';
+  password: string = '';
+  confirmPassword: string = '';
+  isLoading: boolean = false;
+  message: string = '';
+  isError: boolean = false;
 
-  constructor(private navCtrl: NavController, private http: HttpClient) {}
+  constructor(private navCtrl: NavController) {}
 
   handleRegister() {
     if (this.password.length < 6) {
@@ -30,42 +30,47 @@ export class RegisterPage {
       return;
     }
     this.isLoading = true;
-    const [nombre, ...apellidoParts] = this.fullName.split(' ');
     const userData = {
-      nombre,
-      apellido: apellidoParts.join(' '),
+      nombre: this.fullName.split(' ')[0],
+      apellido: this.fullName.split(' ')[1] || '',
       email: this.email,
       contraseña: this.password,
-      confirmar_contraseña: this.confirmPassword
+      confirmar_contraseña: this.confirmPassword // Add this line
     };
 
-    this.http.post('http://127.0.0.1:8000/api/register', userData).subscribe(
-      (data: any) => {
-        this.isLoading = false;
-        if (data.error) {
-          this.isError = true;
-          if (data.error.includes('correo ingresado ya existe')) {
-            this.message = 'El correo ingresado ya existe.';
-          } else {
-            this.message = data.error;
-          }
-        } else {
-          this.isError = false;
-          this.message = 'Usuario registrado correctamente.';
-          setTimeout(() => {
-            this.navCtrl.navigateBack('/tabs/login', {
-              animated: true,
-              animationDirection: 'back'
-            });
-          }, 3000);
-        }   
+    fetch(`${environment.apiUrl}/api/register`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
       },
-      error => {
-        this.isLoading = false;
+      body: JSON.stringify(userData)
+    })
+    .then(response => response.json())
+    .then(data => {
+      this.isLoading = false;
+      if (data.error) {
         this.isError = true;
-        this.message = 'Error: ' + error.message;
-      }
-    );
+        if (data.error.includes('correo ingresado ya existe')) {
+          this.message = 'El correo ingresado ya existe.';
+        } else {
+          this.message = data.error;
+        }
+      } else {
+        this.isError = false;
+        this.message = 'Usuario registrado correctamente.';
+        setTimeout(() => {
+          this.navCtrl.navigateBack('/tabs/login', {
+            animated: true,
+            animationDirection: 'back'
+          });
+        }, 3000);
+      } 
+    })
+    .catch(error => {
+      this.isLoading = false;
+      this.isError = true;
+      this.message = 'Error: ' + error;
+    });
   }
 
   navigateToLogin() {
@@ -74,5 +79,4 @@ export class RegisterPage {
       animationDirection: 'forward'
     });
   }
-  
 }
