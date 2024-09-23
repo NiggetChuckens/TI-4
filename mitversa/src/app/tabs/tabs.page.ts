@@ -28,20 +28,24 @@ export class TabsPage implements OnInit {
       return [
         { label: 'Entregas', route: '/tabs/entregas', icon: 'cube-outline' },
         { label: 'Pedidos', route: '/tabs/pedidos', icon: 'list-outline' },
-        { label: 'Perfil', route: '/tabs/perfil', icon: 'person-outline' }
+        { label: 'Perfil', route: '/tabs/perfil', icon: 'person-outline' },
+        { label: 'Scanner', route: '/tabs/scanner', icon: 'scan-outline' }
       ];
     } else if (this.userType === 'gerente') {
       return [
         { label: 'Dashboard', route: '/tabs/dashboard', icon: 'stats-chart-outline' },
         { label: 'Pedidos', route: '/tabs/pedidos', icon: 'list-outline' },
-        { label: 'Perfil', route: '/tabs/perfil', icon: 'person-outline' }
+        { label: 'Perfil', route: '/tabs/perfil', icon: 'person-outline' },
+        { label: 'Scanner', route: '/tabs/scanner', icon: 'scan-outline' }
       ];
     } else {
       // Por defecto, para usuarios normales
       return [
         { label: 'Home', route: '/tabs/user-home', icon: 'home-outline' },
         { label: 'Pedidos', route: '/tabs/pedidos', icon: 'list-outline' },
-        { label: 'Perfil', route: '/tabs/perfil', icon: 'person-outline' }
+        { label: 'Perfil', route: '/tabs/perfil', icon: 'person-outline' },
+        { label: 'Scanner', route: '/tabs/scanner', icon: 'scan-outline' }, //test eliminar o comentar cuando no se necesite
+        {label: 'gerente-home', route:'/tabs/gerente-home', icon: 'home'}, //test eliminar o comentar cuando no se necesite
       ];
     }
   }

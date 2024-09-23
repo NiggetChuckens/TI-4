@@ -7,71 +7,99 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
+<ion-content>
   <!-- Filtro y acciones -->
   <div class="filter-container">
-    <ion-searchbar placeholder="Filtrar" [(ngModel)]="searchTerm" (ionInput)="filterRepartidores()"></ion-searchbar>
-    <ion-button color="success" fill="clear">
-      <ion-icon name="person-add-outline"></ion-icon>
+    <ion-searchbar
+      placeholder="Buscar repartidor"
+      [(ngModel)]="searchTerm"
+      (ionInput)="filterRepartidores()"
+      showCancelButton="never"
+    ></ion-searchbar>
+    <ion-button color="primary" (click)="goToAddRepartidor()">
+      <ion-icon slot="icon-only" name="person-add-outline"></ion-icon>
     </ion-button>
   </div>
 
   <!-- Lista de repartidores filtrada -->
-  <div *ngFor="let repartidor of filteredRepartidores">
-    <ion-card>
-      <ion-card-content class="repartidor-card">
-        <div class="repartidor-header">
-          <ion-avatar slot="start">
-            <img [src]="repartidor.profilePicture" alt="Profile Picture">
-          </ion-avatar>
-          <div>
-            <h2>{{ repartidor.name }}</h2>
-            <p>{{ repartidor.email }}</p>
-          </div>
-          <!-- Botón de eliminar dentro de cada card -->
-          <ion-button fill="clear" size="small" color="danger" (click)="deleteRepartidor(repartidor)">
-            <ion-icon name="trash-outline"></ion-icon>
+  <ion-list>
+    <ion-card
+      *ngFor="let repartidor of filteredRepartidores"
+      class="repartidor-card"
+    >
+      <!-- Encabezado del repartidor -->
+      <div class="repartidor-header">
+        <ion-avatar>
+          <img
+            [src]="repartidor.profilePicture"
+            alt="Foto de {{ repartidor.name }}"
+          />
+        </ion-avatar>
+        <div class="repartidor-info">
+          <h2>{{ repartidor.name }}</h2>
+          <p>{{ repartidor.email }}</p>
+          <p>{{ repartidor.patente }}</p>
+        </div>
+        <!-- Contenedor de botones -->
+        <div class="button-container">
+          <!-- Botón de eliminar -->
+          <ion-button
+            fill="clear"
+            color="danger"
+            (click)="confirmDeleteRepartidor(repartidor)"
+            class="delete-button"
+          >
+            <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+          </ion-button>
+          <!-- Botón de editar perfil -->
+          <ion-button
+            fill="clear"
+            color="medium"
+            (click)="editProfile(repartidor)"
+            class="edit-button"
+          >
+            <ion-icon slot="icon-only" name="create-outline"></ion-icon>
           </ion-button>
         </div>
+      </div>
 
-        <!-- Íconos adicionales para editar perfil y asignar pedidos -->
-        <div class="repartidor-actions">
-          <ion-button fill="clear" size="small" color="secondary" (click)="editProfile(repartidor)">
-            <ion-icon name="create-outline"></ion-icon>
-            Editar Perfil
-          </ion-button>
-          <ion-button fill="clear" size="small" color="primary" (click)="assignOrder(repartidor)">
-            <ion-icon name="cube-outline"></ion-icon>
-            Asignar Pedidos
-          </ion-button>
-        </div>
 
-        <!-- Información de reparto -->
-        <div class="repartidor-stats">
-          <ion-grid>
-            <ion-row>
-              <ion-col>
-                <div class="stat-icon">
-                  <ion-icon name="send" color="primary"></ion-icon>
-                </div>
-                <p>{{ repartidor.repartos }} Repartos</p>
-              </ion-col>
-              <ion-col>
-                <div class="stat-icon">
-                  <ion-icon name="return-down-back-outline" color="primary"></ion-icon>
-                </div>
-                <p>{{ repartidor.devueltos }} Devueltos</p>
-              </ion-col>
-              <ion-col>
-                <div class="stat-icon">
-                  <ion-icon name="cube" color="primary"></ion-icon>
-                </div>
-                <p>{{ repartidor.entregados }} Entregados</p>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-        </div>
-      </ion-card-content>
+      <div class="repartidor-actions">
+        <ion-button color="tertiary" (click)="assignOrder(repartidor)">
+          <ion-icon slot="start" name="cube-outline"></ion-icon>
+          Asignar Pedidos
+        </ion-button>
+      </div>
+
+
+      <!-- Estadísticas del repartidor -->
+      <div class="repartidor-stats">
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <div class="stat-icon">
+                <ion-icon name="send-outline" color="primary"></ion-icon>
+              </div>
+              <p>{{ repartidor.repartos }} Repartos</p>
+            </ion-col>
+            <ion-col>
+              <div class="stat-icon">
+                <ion-icon
+                  name="return-down-back-outline"
+                  color="danger"
+                ></ion-icon>
+              </div>
+              <p>{{ repartidor.devueltos }} Devueltos</p>
+            </ion-col>
+            <ion-col>
+              <div class="stat-icon">
+                <ion-icon name="cube-outline" color="success"></ion-icon>
+              </div>
+              <p>{{ repartidor.entregados }} Entregados</p>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
     </ion-card>
-  </div>
+  </ion-list>
 </ion-content>

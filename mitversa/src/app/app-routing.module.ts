@@ -62,6 +62,18 @@ const routes: Routes = [
     path: 'user-pedidos',
     loadChildren: () => import('./user-pedidos/user-pedidos.module').then( m => m.UserPedidosPageModule)
   },
+  {
+    path: 'scanner',
+    loadChildren: () => import('./scanner/scanner.module').then( m => m.ScannerPageModule)
+  },
+  {
+    path: 'gerente-home',
+    loadChildren: () => import('./gerente-home/gerente-home.module').then( m => m.GerenteHomePageModule)
+  },
+  {
+    path: 'add-repartidor',
+    loadChildren: () => import('./add-repartidor/add-repartidor.module').then( m => m.AddRepartidorPageModule)
+  },
 ];
 @NgModule({
   imports: [

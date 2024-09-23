@@ -1,65 +1,152 @@
+/* Estilos generales */
 ion-content {
-    --background: linear-gradient(135deg, var(--ion-color-primary), var(--ion-color-secondary));
-  }
-  
-  .filter-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
-  }
-  
-  .repartidor-card {
-    display: flex;
+  --background: #f2f2f2;
+  padding: 0 16px;
+}
+
+/* Contenedor del filtro y botón */
+.filter-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 16px 0;
+}
+
+/* Estilos del ion-searchbar */
+ion-searchbar {
+  flex: 1;
+  margin-right: 8px;
+}
+
+/* Estilos del botón de agregar repartidor */
+.filter-container ion-button {
+  --border-radius: 50%;
+  --padding-start: 0;
+  --padding-end: 0;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Estilos de las tarjetas de repartidores */
+.repartidor-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Encabezado de cada tarjeta */
+.repartidor-header {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  position: relative;
+}
+
+.repartidor-header ion-avatar {
+  margin-right: 16px;
+}
+
+.repartidor-header .repartidor-info {
+  flex: 1;
+}
+
+.repartidor-header h2 {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.repartidor-header p {
+  margin: 4px 0 0 0;
+  color: var(--ion-color-medium);
+}
+
+/* Contenedor de botones */
+.button-container {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+/* Botón de eliminar */
+.delete-button {
+  --padding-start: 0;
+  --padding-end: 0;
+  margin-bottom: 4px;
+}
+
+/* Botón de editar */
+.edit-button {
+  --padding-start: 0;
+  --padding-end: 0;
+  color: var(--ion-color-medium);
+}
+
+/* Remover fondo y bordes de los botones */
+.delete-button,
+.edit-button {
+  --background: transparent;
+  --background-activated: transparent;
+  --background-focused: transparent;
+  --background-hover: transparent;
+  --ripple-color: transparent;
+}
+
+/* Acciones de cada repartidor (opcional) */
+.repartidor-actions {
+  display: flex;
+  justify-content: space-around;
+  padding: 16px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.repartidor-actions ion-button {
+  --border-radius: 8px;
+}
+
+/* Estadísticas de repartidor */
+.repartidor-stats {
+  padding: 16px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.repartidor-stats ion-row {
+  text-align: center;
+}
+
+.stat-icon {
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+.repartidor-stats p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* Responsive Design */
+@media (max-width: 576px) {
+  .repartidor-header {
     flex-direction: column;
     align-items: flex-start;
   }
-  
-  .repartidor-header {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    align-items: center;
+
+  .button-container {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    flex-direction: row;
   }
-  
-  .repartidor-header h2 {
-    font-size: 1.2rem;
-    margin: 0;
+
+  .delete-button,
+  .edit-button {
+    margin-left: 8px;
+    margin-bottom: 0;
   }
-  
-  .repartidor-header p {
-    margin: 0;
-    color: var(--ion-color-medium);
-  }
-  
-  .repartidor-actions {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 1rem;
-  }
-  
-  .repartidor-actions ion-button {
-    margin-right: 10px;
-  }
-  
-  /* Centrar los íconos en el card */
-  .repartidor-stats {
-    margin-top: 1rem;
-    text-align: center;
-  }
-  
-  .stat-icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .repartidor-stats ion-col {
-    text-align: center;
-  }
-  
-  .repartidor-stats p {
-    margin-top: 0.5rem;
-    font-size: 0.9rem;
-  }
-  
+}

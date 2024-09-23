@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-login',
@@ -41,7 +42,7 @@ export class loginPage {
       contraseña: this.password
     };
 
-    fetch('http://127.0.0.1:8000/api/login', {
+    fetch(`${environment.apiUrl}/api/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

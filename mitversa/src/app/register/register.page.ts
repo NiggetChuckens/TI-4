@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from '@ionic/angular';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-register',
@@ -34,10 +35,10 @@ export class RegisterPage {
       apellido: this.fullName.split(' ')[1] || '',
       email: this.email,
       contraseña: this.password,
-      confirmar_contraseña: this.confirmPassword // Add this line
+      confirmar_contraseña: this.confirmPassword,
     };
 
-    fetch('http://127.0.0.1:8000/api/register', {
+    fetch(`${environment.apiUrl}/api/register`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -57,6 +58,8 @@ export class RegisterPage {
       } else {
         this.isError = false;
         this.message = 'Usuario registrado correctamente.';
+        // Limpieza del formulario
+        this.resetForm();
         setTimeout(() => {
           this.navCtrl.navigateBack('/tabs/login', {
             animated: true,
@@ -70,6 +73,14 @@ export class RegisterPage {
       this.isError = true;
       this.message = 'Error: ' + error;
     });
+  }
+
+  resetForm() {
+    this.fullName = '';
+    this.email = '';
+    this.password = '';
+    this.confirmPassword = '';
+    // Restablecer otros campos si es necesario
   }
 
   navigateToLogin() {
