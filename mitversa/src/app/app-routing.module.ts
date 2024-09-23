@@ -70,6 +70,14 @@ const routes: Routes = [
     path: 'test',
     loadChildren: () => import('./test/test.module').then( m => m.TestPageModule)
   },
+  {
+    path: 'gerente-home',
+    loadChildren: () => import('./gerente-home/gerente-home.module').then( m => m.GerenteHomePageModule)
+  },
+  {
+    path: 'add-repartidor',
+    loadChildren: () => import('./add-repartidor/add-repartidor.module').then( m => m.AddRepartidorPageModule)
+  },
 ];
 @NgModule({
   imports: [

@@ -1,0 +1,30 @@
+.chart-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.chart-card {
+  width: 100%;
+  max-width: 800px;
+  margin-bottom: 20px;
+}
+
+.chart {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
+
+@media (max-width: 768px) {
+  .chart {
+    aspect-ratio: 4 / 3;
+  }
+}
+
+@media (max-width: 480px) {
+  .chart {
+    aspect-ratio: 1 / 1;
+  }
+}
