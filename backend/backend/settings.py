@@ -21,6 +21,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'api',
     'corsheaders',
+    'sslserver'
 ]
 
 MIDDLEWARE = [
@@ -98,6 +99,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ALLOW_ALL_ORIGINS = True
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:8100",  
-    "http://127.0.0.1:8100",    
+
 ]
+CORS_ALLOW_HEADERS = ['*']
