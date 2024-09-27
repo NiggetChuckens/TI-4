@@ -10,3 +10,5 @@ backend/api/__pycache__/
 backend/.env
 
 backend/mitversa.sql
+
+node_modules/

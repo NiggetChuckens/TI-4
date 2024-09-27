@@ -21,6 +21,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'api',
     'corsheaders',
+    #'django_sslserver'
 ]
 
 MIDDLEWARE = [
@@ -56,7 +57,7 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.getenv('DB_NAME', 'mitversa'),
+        'NAME': os.getenv('DB_NAME', 'ti4'),
         'USER': os.getenv('DB_USER', 'root'),
         'PASSWORD': os.getenv('DB_PASSWORD', ''),
         'HOST': os.getenv('DB_HOST', '127.0.0.1'),
@@ -96,5 +97,7 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOW_ALL_ORIGINS = True
+
+CORS_ALLOW_HEADERS = ['*']
 
 CORS_ALLOWED_ORIGINS = []
