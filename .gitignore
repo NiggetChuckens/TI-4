@@ -1,1 +1,12 @@
 mitversa/node_modules
+env/
+
+backend/backend/__pycache__/
+
+backend/api/__pycache__/
+
+*.zip
+
+backend/.env
+
+backend/mitversa.sql
