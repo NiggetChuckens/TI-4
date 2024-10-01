@@ -8,6 +8,7 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgxEchartsModule } from 'ngx-echarts';
+import { BarcodeScanner } from '@capacitor-mlkit/barcode-scanning';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,7 +19,7 @@ import { NgxEchartsModule } from 'ngx-echarts';
     HttpClientModule, 
     NgxEchartsModule.forRoot({
       echarts: () => import('echarts'),
-    })
+    }),
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
