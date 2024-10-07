@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Historial de Pedidos</ion-title>
+    <ion-buttons slot="end">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Botones de segmentación personalizados -->
+  <div class="segment-container">
+    <button
+      [ngClass]="{'segment-button': true, 'active': selectedSegment === 'entregados'}"
+      (click)="selectSegment('entregados')">
+      Entregados
+    </button>
+    <button
+      [ngClass]="{'segment-button': true, 'active': selectedSegment === 'cancelados'}"
+      (click)="selectSegment('cancelados')">
+      Cancelados
+    </button>
+  </div>
+
+  <!-- Lista de pedidos filtrados -->
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" size-md="6" *ngFor="let pedido of filteredPedidos">
+        <ion-item [ngClass]="{
+                    'estado-entregado': pedido.estado === 'entregado',
+                    'estado-cancelado': pedido.estado === 'cancelado'
+                  }"
+                  class="pedido-item">
+          <ion-label class="pedido-label">
+            <h2>Pedido #{{ pedido.id }}</h2>
+            <p>{{ pedido.direccion }}</p>
+            <p><strong>Estado:</strong> {{ pedido.estado | titlecase }}</p>
+          </ion-label>
+          <ion-button fill="clear" slot="end">
+            <ion-icon name="arrow-forward-circle-outline"></ion-icon>
+          </ion-button>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
