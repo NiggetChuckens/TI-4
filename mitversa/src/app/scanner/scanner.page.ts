@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BarcodeScanner } from '@capacitor-mlkit/barcode-scanning';
 
 @Component({
   selector: 'app-scanner',
@@ -8,32 +9,51 @@ import { Component, OnInit } from '@angular/core';
 export class ScannerPage implements OnInit {
   showResult: boolean = false;
   scannedCode: string = '';
-  isFlashlightOn: boolean = false;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
-    //Logica barcode scanner aqui
+    // Chequear si el escáner es soportado
+    this.checkScannerSupport();
   }
 
-  toggleFlashlight() {
-    this.isFlashlightOn = !this.isFlashlightOn;
-    // logica para la linterna aqui
-    console.log('Flashlight toggled:', this.isFlashlightOn);
+  async checkScannerSupport() {
+    const { supported } = await BarcodeScanner.isSupported();
+    if (!supported) {
+      console.error('El escáner de códigos de barras no es soportado en este dispositivo.');
+    }
   }
 
-  scanBarcode() {
-    // logica para escanear codigo de barras aqui
-    console.log('Scanning barcode...'); //test
-    
-    // simulacion de escaneo de codigo de barras
-    // una vez esté listo eliminar el ejemplo
-    setTimeout(() => { // Eliminar el timeout, simplemente mostrar apenas se detecte el codigo
-      this.scannedCode = 'EXAMPLE123456'; //codigo de barra
-      this.showResult = true;
-    }, 2000);
+  // Función para escanear un código de barras
+  async scanBarcode() {
+    console.log('Iniciando escaneo de código de barras...');
+
+    try {
+      document.querySelector('body')?.classList.add('barcode-scanner-active');
+
+      // Mostrar la vista previa de la cámara
+      const cameraFeed = document.getElementById('cameraFeed');
+      if (cameraFeed) {
+        cameraFeed.style.display = 'block';
+      }
+
+      const listener = await BarcodeScanner.addListener('barcodeScanned', async result => {
+        console.log(result.barcode);
+        this.scannedCode = result.barcode.displayValue || ''; // Guardar el código escaneado
+        this.showResult = true; // Mostrar el modal al escanear
+        await listener.remove(); // Remover el listener después de escanear
+        document.querySelector('body')?.classList.remove('barcode-scanner-active');
+        await BarcodeScanner.stopScan(); // Detener el escáner después de leer el código
+      });
+
+      await BarcodeScanner.startScan(); // Iniciar el escaneo
+    } catch (error) {
+      console.error('Error durante el escaneo de código de barras:', error);
+      document.querySelector('body')?.classList.remove('barcode-scanner-active');
+    }
   }
 
+  // Función para cerrar el modal de resultado
   closeResult() {
     this.showResult = false;
     this.scannedCode = '';

@@ -21,7 +21,7 @@ export class UserHomePage implements OnInit {
     private animationCtrl: AnimationController,
     private toastController: ToastController
   ) {
-    this.currentStatus = ''; // Initialize currentStatus property
+    this.currentStatus = '';
   }
 
   ngOnInit() {}
@@ -39,7 +39,7 @@ export class UserHomePage implements OnInit {
     }
 
     // Animate the button
-    const button = document.querySelector('ion-button');
+    const button = document.querySelector('.track-button');
     if (button) {
       const animation = this.animationCtrl.create()
         .addElement(button)
@@ -62,5 +62,22 @@ export class UserHomePage implements OnInit {
     } else {
       this.currentStatus = 'Not Found';
     }
+  }
+
+  getStatusIcon(): string {
+    switch (this.currentStatus) {
+      case 'In Transit':
+        return 'car-outline';
+      case 'Not Found':
+        return 'alert-circle-outline';
+      default:
+        return 'help-circle-outline';
+    }
+  }
+
+  isStepActive(step: any): boolean {
+    const statusIndex = this.steps.findIndex(s => s.status === this.currentStatus);
+    const stepIndex = this.steps.indexOf(step);
+    return stepIndex <= statusIndex;
   }
 }
