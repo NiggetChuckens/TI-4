@@ -52,6 +52,10 @@ const routes: Routes = [
         path:'repartidor-historial',
         loadChildren: () => import('../repartidor-historial/repartidor-historial.module').then(m=> m.RepartidorHistorialPageModule)
       },
+      {
+        path:'edit-repartidor',
+        loadChildren: () => import('../edit-repartidor/edit-repartidor.module').then(m=> m.EditRepartidorPageModule)
+      },
       
 
 

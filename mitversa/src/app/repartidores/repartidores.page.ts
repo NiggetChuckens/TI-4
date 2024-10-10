@@ -84,7 +84,7 @@ export class RepartidoresPage implements OnInit {
   }
 
   editProfile(repartidor: Repartidor) {
-    console.log('Editar perfil de:', repartidor.name);
+    this.navCtrl.navigateForward('/tabs/edit-repartidor');
   }
 
   assignOrder(repartidor: Repartidor) {
