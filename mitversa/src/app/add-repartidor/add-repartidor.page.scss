@@ -1,6 +1,4 @@
-ion-content {
-    --background: var(--ion-color-light);
-  }
+
   
   .register-container {
     display: flex;
@@ -92,4 +90,56 @@ ion-content {
       flex: 0 0 100%;
     }
   }
+  ion-item ion-input:focus {
+    border-bottom-color: var(--ion-color-primary);
+  }
+  ion-item {
+    --background: transparent;
+    --border-color: transparent; /* Eliminamos el borde por defecto */
+    margin-bottom: 16px;
+  }
   
+  ion-item ion-input {
+    border: none;
+    border-bottom: 1px solid var(--ion-color-medium); /* Línea dentro del input */
+    padding: 8px 0;
+    background: transparent;
+  }
+  
+  ion-label {
+    color: var(--ion-color-medium);
+  }
+  
+  ion-input {
+    --color: var(--ion-color-dark);
+    --placeholder-color: var(--ion-color-medium);
+    --padding-start: 10px;
+  }
+  .error-message,
+.success-message {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  border-left: 5px solid;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+.error-message {
+  background-color: rgba(var(--ion-color-danger-rgb), 0.1);
+  color: var(--ion-color-danger);
+  border-left-color: var(--ion-color-danger);
+}
+
+.success-message {
+  background-color: rgba(var(--ion-color-success-rgb), 0.1);
+  color: var(--ion-color-success);
+  border-left-color: var(--ion-color-success);
+}
+
+.error-message ion-icon,
+.success-message ion-icon {
+  margin-right: 10px;
+  font-size: 20px;
+}

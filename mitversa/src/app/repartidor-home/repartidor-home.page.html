@@ -9,23 +9,24 @@
 
 <ion-content>
   <ion-list>
-    <ion-item *ngFor="let pedido of pedidos" 
-              [ngClass]="{
-                'estado-entregado': pedido.estado === 'entregado',
-                'estado-transito': pedido.estado === 'transito',
-                'estado-no-entregado': pedido.estado === 'no-entregado',
-                'estado-devuelto': pedido.estado === 'devuelto'
-              }"
-              class="pedido-item">
-      <ion-label class="pedido-label">
-        <h2>Pedido #{{ pedido.id }}</h2>
-        <p>Estado: {{pedido.estado}}</p>
+    <!-- Eliminamos ion-item y utilizamos ion-card para las tarjetas -->
+    <ion-card
+      *ngFor="let pedido of pedidos"
+      class="pedido-card"
+    >
+      <ion-card-header>
+        <ion-card-title>Pedido #{{ pedido.id }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
         <p>{{ pedido.direccion }}</p>
-      </ion-label>
-      <ion-button fill="clear" slot="end" (click)="navigateToDetail(pedido.id)">
-        <ion-icon name="arrow-forward-circle-outline"></ion-icon>
-      </ion-button>
-    </ion-item>
+        <ion-button
+          expand="block"
+          (click)="navigateToDetail(pedido.id)"
+          class="ver-detalle-button"
+        >
+          Ver Detalle
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
   </ion-list>
-  
 </ion-content>

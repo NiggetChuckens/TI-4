@@ -8,10 +8,10 @@ import { Component, OnInit } from '@angular/core';
 export class RepartidorHomePage implements OnInit {
 
   pedidos = [
-    { id: '0001', direccion: 'Av alemania #1121, Temuco', estado: 'entregado' },
-    { id: '0002', direccion: 'Av alemania #1121, Temuco', estado: 'transito' },
-    { id: '0003', direccion: 'Av alemania #1121, Temuco', estado: 'no-entregado' },
-    { id: '0004', direccion: 'Av alemania #1121, Temuco', estado: 'devuelto' },
+    { id: '0001', direccion: 'Av alemania #1121, Temuco'},
+    { id: '0002', direccion: 'Av alemania #1121, Temuco'},
+    { id: '0003', direccion: 'Av alemania #1121, Temuco'},
+    { id: '0004', direccion: 'Av alemania #1121, Temuco'},
   ];
 
   constructor() { }

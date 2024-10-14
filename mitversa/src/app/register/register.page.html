@@ -1,31 +1,21 @@
-<ion-header>
-  <ion-toolbar color="primary">
-    <ion-title>Registrarse</ion-title>
-  </ion-toolbar>
-</ion-header>
 
-<ion-content>
+
+<ion-content [fullscreen]="true" scroll="false">
+  <ion-text color="secondary">
+    <h1 class="ion-text-center">Registrarse</h1>
+  </ion-text>
   <div class="register-container">
     <ion-card>
-      <ion-card-header>
-        <ion-text color="primary">
-          <h2 class="ion-text-center">Crear Cuenta</h2>
-        </ion-text>
+      <ion-card-header class="no-background">
       </ion-card-header>
       <ion-card-content>
-        <!-- Mensaje de error o éxito -->
-        <div
-          *ngIf="message"
-          [ngClass]="{ 'error-message': isError, 'success-message': !isError }"
-        >
-          {{ message }}
-        </div>
+
         <form (ngSubmit)="handleRegister()" #registerForm="ngForm">
           <ion-grid>
             <!-- Nombre Completo -->
             <ion-row>
               <ion-col size="12">
-                <ion-item>
+                <ion-item lines="full">
                   <ion-label position="floating">
                     <ion-icon name="person-outline"></ion-icon> Nombre Completo
                   </ion-label>
@@ -42,7 +32,7 @@
             <!-- Correo Electrónico -->
             <ion-row>
               <ion-col size="12">
-                <ion-item>
+                <ion-item lines="full">
                   <ion-label position="floating">
                     <ion-icon name="mail-outline"></ion-icon> Correo Electrónico
                   </ion-label>
@@ -59,7 +49,7 @@
             <!-- Contraseña y Confirmar Contraseña -->
             <ion-row>
               <ion-col size="12" size-md="6">
-                <ion-item>
+                <ion-item lines="full">
                   <ion-label position="floating">
                     <ion-icon name="lock-closed-outline"></ion-icon> Contraseña
                   </ion-label>
@@ -72,7 +62,7 @@
                 </ion-item>
               </ion-col>
               <ion-col size="12" size-md="6">
-                <ion-item>
+                <ion-item lines="full">
                   <ion-label position="floating">
                     <ion-icon name="lock-closed-outline"></ion-icon> Confirmar Contraseña
                   </ion-label>
@@ -85,7 +75,15 @@
                 </ion-item>
               </ion-col>
             </ion-row>
-
+            <!-- Mensaje de error o éxito -->
+              <div
+              *ngIf="message"
+              [ngClass]="{ 'error-message': isError, 'success-message': !isError }"
+              >
+              <ion-icon *ngIf="isError" name="alert-circle-outline"></ion-icon>
+              <ion-icon *ngIf="!isError" name="checkmark-circle-outline"></ion-icon>
+              <span>{{ message }}</span>
+              </div>
             <!-- Botón de Registro -->
             <ion-row>
               <ion-col size="12">
@@ -109,12 +107,12 @@
             </ion-row>
           </ion-grid>
         </form>
-
-        <!-- Enlace para iniciar sesión -->
-        <p class="login-text">
-          ¿Ya tienes una cuenta? <b><a (click)="navigateToLogin()" class="bold-text">Iniciar sesión</a></b>
-        </p>
       </ion-card-content>
     </ion-card>
+
+    <!-- Texto para iniciar sesión (afuera de la tarjeta) -->
+    <p class="sign-up-text">
+      ¿Ya tienes una cuenta? <a (click)="navigateToLogin()">Iniciar sesión</a>
+    </p>
   </div>
 </ion-content>

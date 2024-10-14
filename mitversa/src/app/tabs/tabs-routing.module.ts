@@ -56,6 +56,10 @@ const routes: Routes = [
         path:'edit-repartidor',
         loadChildren: () => import('../edit-repartidor/edit-repartidor.module').then(m=> m.EditRepartidorPageModule)
       },
+      {
+        path:'asignar-pedido',
+        loadChildren: () => import('../asignar-pedido/asignar-pedido.module').then(m=> m.AsignarPedidoPageModule)
+      },
       
 
 

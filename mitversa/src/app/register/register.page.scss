@@ -1,89 +1,138 @@
 ion-content {
-  --background: linear-gradient(135deg, var(--ion-color-primary), var(--ion-color-secondary));
+  --background: linear-gradient(
+    135deg,
+    var(--ion-color-primary),
+    var(--ion-color-secondary)
+  );
 }
 
 .register-container {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  padding: 16px;
+  justify-content: center;
+  height: 100vh; /* Ajustamos la altura al 100% de la ventana */
 }
 
 ion-card {
-  width: 100%;
-  max-width: 600px;
-  border-radius: 12px;
+  width: 90%;
+  max-width: 400px;
+  margin: auto;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  /* Fondo semitransparente para legibilidad */
-  background-color: rgba(255, 255, 255, 0.9);
 }
 
-ion-card-header {
-  background-color: transparent;
+ion-card-header.no-background {
+  background: none;
+  padding: 0;
 }
 
-ion-card-header h2 {
-  margin: 0;
-  font-size: 24px;
+form {
+  ion-item {
+    --background: transparent;
+    --border-color: var(--ion-color-primary);
+    --highlight-color-focused: var(--ion-color-secondary);
+    
+    --highlight-height: 2px;
+    margin-bottom: 16px;
+  }
+
+  ion-input {
+    --color: var(--ion-color-dark);
+    --placeholder-color: var(--ion-color-medium);
+    --padding-start: 10px;
+  }
 }
 
-ion-item {
-  --background: transparent;
-  --border-color: var(--ion-color-medium);
-  --highlight-height: 0;
-}
-
-ion-label {
-  color: var(--ion-color-dark);
-}
-
-ion-input {
-  --color: var(--ion-color-dark);
-}
-
-ion-button {
-  margin-top: 16px;
-}
-
-.login-text {
+/* Estilo del texto de iniciar sesión */
+.sign-up-text {
+  margin-top: 10px;
+  color: var(--ion-color-light);
   text-align: center;
-  margin-top: 16px;
-  /* Cambiamos el color a un tono oscuro para mayor legibilidad */
-  color: var(--ion-color-dark);
+
+  a {
+    color: var(--ion-color-light);
+    font-weight: bold;
+    text-decoration: none;
+  }
 }
 
-.login-text a {
-  /* Ajustamos el color del enlace a un tono primario para que destaque */
+.sign-up-text a {
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.sign-up-text a:hover {
   color: var(--ion-color-primary);
-  font-weight: bold;
-  text-decoration: none;
-}
-
-.error-message,
-.success-message {
-  padding: 12px;
-  border-radius: 8px;
-  margin-bottom: 16px;
-  text-align: center;
 }
 
 .error-message {
-  background-color: #f8d7da;
-  color: #721c24;
+  display: flex;
+  align-items: center;
+  background-color: rgba(var(--ion-color-danger-rgb), 0.1);
+  color: var(--ion-color-danger);
+  padding: 10px 15px;
+  border-left: 5px solid var(--ion-color-danger);
+  border-radius: 4px;
+  margin-bottom: 15px;
+  font-size: 14px;
 }
+
+.error-message ion-icon {
+  margin-right: 10px;
+  font-size: 20px;
+}
+
 
 .success-message {
   background-color: #d4edda;
   color: #155724;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  text-align: center;
 }
 
-/* Ajustes para legibilidad sobre el fondo */
-ion-card,
-ion-card-content,
-ion-label,
-ion-input,
-.login-text {
-  color: var(--ion-color-dark);
+/* Ajustes para evitar scroll y mantener contenido fijo */
+ion-content {
+  --overflow: hidden;
+}
+
+.register-container {
+  padding: 16px;
+  box-sizing: border-box;
+  height: calc(100vh - var(--ion-toolbar-height)); /* Restamos la altura del header */
+}
+
+ion-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+ion-card-content {
+  flex: 1;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+}
+
+ion-grid {
+  flex: 1;
+}
+
+/* Evitar que el contenido se expanda más allá de la pantalla */
+ion-row,
+ion-col {
+  flex: 1;
+}
+
+ion-button {
+  margin-top: 20px;
 }
 
 /* Responsividad */
@@ -99,4 +148,29 @@ ion-input,
     max-width: 100%;
     flex: 0 0 100%;
   }
+}
+ion-item ion-input:focus {
+  border-bottom-color: var(--ion-color-primary);
+}
+ion-item {
+  --background: transparent;
+  --border-color: transparent; /* Eliminamos el borde por defecto */
+  margin-bottom: 16px;
+}
+
+ion-item ion-input {
+  border: none;
+  border-bottom: 1px solid var(--ion-color-medium); /* Línea dentro del input */
+  padding: 8px 0;
+  background: transparent;
+}
+
+ion-label {
+  color: var(--ion-color-medium);
+}
+
+ion-input {
+  --color: var(--ion-color-dark);
+  --placeholder-color: var(--ion-color-medium);
+  --padding-start: 10px;
 }

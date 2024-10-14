@@ -1,15 +1,11 @@
 /* Estilos generales */
-ion-content {
-  --background: #f2f2f2;
-  padding: 0 16px;
-}
 
 /* Contenedor del filtro y botón */
 .filter-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 16px 0;
+  margin: 16px;
 }
 
 /* Estilos del ion-searchbar */
@@ -32,10 +28,15 @@ ion-searchbar {
 
 /* Estilos de las tarjetas de repartidores */
 .repartidor-card {
-  background-color: #ffffff;
+  background-color: #ffffff; /* Fondo blanco para las tarjetas */
   border-radius: 12px;
-  margin-bottom: 16px;
+  margin: 16px; /* Espacio alrededor de las tarjetas */
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Ajustamos el contenedor de la lista para que sea transparente */
+ion-list {
+  background: transparent;
 }
 
 /* Encabezado de cada tarjeta */
@@ -44,6 +45,7 @@ ion-searchbar {
   align-items: center;
   padding: 16px;
   position: relative;
+  background: transparent; /* Fondo transparente para el encabezado */
 }
 
 .repartidor-header ion-avatar {
@@ -57,6 +59,7 @@ ion-searchbar {
 .repartidor-header h2 {
   font-size: 1.2rem;
   margin: 0;
+  color: var(--ion-color-dark); /* Texto oscuro para contraste */
 }
 
 .repartidor-header p {
@@ -79,13 +82,14 @@ ion-searchbar {
   --padding-start: 0;
   --padding-end: 0;
   margin-bottom: 4px;
+  color: var(--ion-color-danger);
 }
 
 /* Botón de editar */
 .edit-button {
   --padding-start: 0;
   --padding-end: 0;
-  color: var(--ion-color-medium);
+  color: var(--ion-color-primary);
 }
 
 /* Remover fondo y bordes de los botones */
@@ -104,6 +108,7 @@ ion-searchbar {
   justify-content: space-around;
   padding: 16px;
   border-top: 1px solid #e0e0e0;
+  background: transparent; /* Fondo transparente */
 }
 
 .repartidor-actions ion-button {
@@ -114,6 +119,7 @@ ion-searchbar {
 .repartidor-stats {
   padding: 16px;
   border-top: 1px solid #e0e0e0;
+  background: transparent; /* Fondo transparente */
 }
 
 .repartidor-stats ion-row {

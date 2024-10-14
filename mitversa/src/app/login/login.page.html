@@ -1,55 +1,107 @@
-<ion-header>
-  <ion-toolbar color="primary">
-    <ion-title>Login</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content class="ion-padding">
+<ion-content [fullscreen]="true" scroll="false">
   <div class="login-container">
+    <ion-text color="secondary">
+      <h1 class="ion-text-center">Iniciar Sesión</h1>
+    </ion-text>
     <ion-card>
       <ion-card-content>
-        <div *ngIf="message" [ngClass]="{'error-message': isError, 'success-message': !isError}">
-          {{ message }}
-        </div>
         <form (ngSubmit)="handleLogin()" #loginForm="ngForm">
-          <ion-item>
-            <ion-icon name="person-circle-outline" slot="start"></ion-icon>
-            <ion-input
-              type="email"
-              placeholder="Email"
-              name="email"
-              [(ngModel)]="email"
-              required
-            ></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
-            <ion-input
-              type="password"
-              placeholder="Password"
-              name="password"
-              [(ngModel)]="password"
-              required
-            ></ion-input>
-          </ion-item>
-          <ion-item lines="none">
-            <ion-label>Remember me</ion-label>
-            <ion-toggle [(ngModel)]="rememberMe" name="rememberMe"></ion-toggle>
-          </ion-item>
-          <ion-button expand="block" type="submit" [disabled]="!loginForm.form.valid || isLoading" class="ion-margin-top">
-            <ion-icon name="log-in-outline" slot="start"></ion-icon>
-            Login
-          </ion-button>
+          <ion-grid>
+            <!-- Correo Electrónico -->
+            <ion-row>
+              <ion-col size="12">
+                <ion-item lines="full">
+                  <ion-label position="floating">
+                    <ion-icon name="mail-outline"></ion-icon> Correo Electrónico
+                  </ion-label>
+                  <ion-input
+                    type="email"
+                    name="email"
+                    [(ngModel)]="email"
+                    required
+                  ></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+
+            <!-- Contraseña -->
+            <ion-row>
+              <ion-col size="12">
+                <ion-item lines="full">
+                  <ion-label position="floating">
+                    <ion-icon name="lock-closed-outline"></ion-icon> Contraseña
+                  </ion-label>
+                  <ion-input
+                    type="password"
+                    name="password"
+                    [(ngModel)]="password"
+                    required
+                  ></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+
+            <!-- Recordarme -->
+            <ion-row>
+              <ion-col size="12">
+                <ion-item lines="none">
+                  <ion-label>Recordarme</ion-label>
+                  <ion-toggle [(ngModel)]="rememberMe" name="rememberMe"></ion-toggle>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+
+            <!-- Mensaje de error o éxito -->
+            <div
+              *ngIf="message"
+              [ngClass]="{ 'error-message': isError, 'success-message': !isError }"
+            >
+              <ion-icon *ngIf="isError" name="alert-circle-outline"></ion-icon>
+              <ion-icon *ngIf="!isError" name="checkmark-circle-outline"></ion-icon>
+              <span>{{ message }}</span>
+            </div>
+
+            <!-- Botón de Inicio de Sesión -->
+            <ion-row>
+              <ion-col size="12">
+                <ion-button
+                  expand="block"
+                  type="submit"
+                  [disabled]="!loginForm.form.valid || isLoading"
+                >
+                  <ion-icon name="log-in-outline" slot="start"></ion-icon>
+                  Iniciar Sesión
+                </ion-button>
+              </ion-col>
+            </ion-row>
+
+            <!-- Spinner de carga -->
+            <ion-row *ngIf="isLoading">
+              <ion-col size="12" class="ion-text-center">
+                <ion-spinner name="crescent"></ion-spinner>
+              </ion-col>
+            </ion-row>
+
+            <!-- Botón de Inicio de Sesión con Google -->
+            <ion-row>
+              <ion-col size="12">
+                <ion-button
+                  expand="block"
+                  color="secondary"
+                >
+                  <ion-icon name="logo-google" slot="start"></ion-icon>
+                  Iniciar Sesión con Google
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
         </form>
-        <ion-spinner *ngIf="isLoading" name="crescent"></ion-spinner>
-        <ion-button expand="block" color="secondary" class="ion-margin-top">
-          <ion-icon name="logo-google" slot="start"></ion-icon>
-          Login with Google
-        </ion-button>
       </ion-card-content>
     </ion-card>
+
+    <!-- Texto para registrarse (afuera de la tarjeta) -->
     <p class="sign-up-text">
-      Don't have an account? <a (click)="navigateToRegister()">Sign up</a>
+      ¿No tienes una cuenta? <a (click)="navigateToRegister()">Registrarse</a>
     </p>
   </div>
 </ion-content>

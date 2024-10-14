@@ -1,50 +1,76 @@
-ion-content {
-    --background: #f0f4f7; /* Fondo general del contenido */
-  }
-  
-  .pedido-item {
-    border-radius: 12px;
-    margin: 10px;
-    color: white;
-    display: flex;
-    align-items: center;
-    --background: transparent; /* Establece el fondo transparente para los items */
-  }
-  
-  /* Estado Entregado (Verde) */
-  .estado-entregado {
-    --background: #28a745 !important; /* Fondo verde para entregado */
-    color: white !important; /* Texto en blanco */
-  }
-  
-  /* Estado En Tránsito (Amarillo) */
-  .estado-transito {
-    --background: #ffc107 !important; /* Fondo amarillo para en tránsito */
-    color: black !important; /* Texto negro para mayor legibilidad */
-  }
-  
-  /* Estado No Entregado (Rojo) */
-  .estado-no-entregado {
-    --background: #dc3545 !important; /* Fondo rojo para no entregado */
-    color: white !important; /* Texto en blanco */
-  }
-  
-  /* Estado Devuelto (Morado) */
-  .estado-devuelto {
-    --background: #6f42c1 !important; /* Fondo morado para devuelto */
-    color: white !important; /* Texto en blanco */
-  }
-  
-  .pedido-label {
-    text-align: center;
-    flex-grow: 1;
-  }
-  
-  .pedido-item h2, .pedido-item p {
-    color: inherit; /* Asegúrate de que el color del texto se herede correctamente */
-  }
-  
-  ion-button {
-    color: white; /* Icono blanco */
-  }
-  
+/* Contenedor de los botones de segmentación */
+.segment-container {
+  display: flex;
+  justify-content: center;
+  margin: 15px;
+}
+
+.segment-button {
+  flex: 1;
+  max-width: 200px;
+  padding: 10px;
+  margin: 0 5px;
+  background-color: #007aff; /* Azul por defecto */
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-weight: bold;
+  text-align: center;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.segment-button.active {
+  background-color: white; /* Fondo blanco cuando está activo */
+  color: #007aff; /* Texto azul cuando está activo */
+  border: 2px solid #007aff;
+}
+
+.segment-button:hover {
+  background-color: #005bb5;
+  color: white;
+}
+
+/* Efecto al presionar el botón */
+.segment-button:active {
+  transform: scale(0.98);
+}
+
+/* Lista de pedidos */
+.pedido-item {
+  border-radius: 12px;
+  margin: 2px;
+  color: white;
+  display: flex;
+  align-items: center;
+  --background: transparent;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Estado Entregado (Verde) */
+.estado-entregado {
+  --background: #28a745 !important;
+  color: white !important;
+}
+
+/* Estado Cancelado (Rojo) */
+.estado-noentregado {
+  --background: #dc3545 !important;
+  color: white !important;
+}
+
+.pedido-label {
+  text-align: left;
+  flex-grow: 1;
+  margin-left: 10px;
+}
+
+.pedido-item h2 {
+  font-size: 18px;
+  margin: 0;
+  color: inherit;
+}
+
+.pedido-item p {
+  font-size: 14px;
+  margin: 2px 0;
+}

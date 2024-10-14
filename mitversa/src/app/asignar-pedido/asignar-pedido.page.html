@@ -1,0 +1,29 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Asignar Pedido</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-no-scroll">
+  <div class="center-container">
+    <ion-card class="asignar-card">
+      <ion-card-header>
+        <ion-card-title class="ion-text-center">Asignación de Pedidos</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <!-- Select para pedidos -->
+        <ion-item>
+          <ion-label>Selecciona Pedidos</ion-label>
+          <ion-select multiple="true" [(ngModel)]="selectedPedidos" placeholder="Selecciona uno o varios pedidos">
+            <ion-select-option *ngFor="let pedido of pedidos" [value]="pedido">{{ pedido }}</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <!-- Botón para confirmar asignación -->
+        <ion-button expand="block" color="primary" (click)="presentConfirm()">
+          Confirmar Asignación
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

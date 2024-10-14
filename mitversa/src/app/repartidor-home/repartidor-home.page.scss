@@ -1,50 +1,53 @@
-ion-content {
-    --background: #f0f4f7; /* Fondo general del contenido */
-  }
-  
-  .pedido-item {
-    border-radius: 12px;
-    margin: 10px;
-    color: white;
-    display: flex;
-    align-items: center;
-    --background: transparent; /* Establece el fondo transparente para los items */
-  }
-  
-  /* Estado Entregado (Verde) */
-  .estado-entregado {
-    --background: #28a745 !important; /* Fondo verde para entregado */
-    color: white !important; /* Texto en blanco */
-  }
-  
-  /* Estado En Tránsito (Amarillo) */
-  .estado-transito {
-    --background: #ffc107 !important; /* Fondo amarillo para en tránsito */
-    color: black !important; /* Texto negro para mayor legibilidad */
-  }
-  
-  /* Estado No Entregado (Rojo) */
-  .estado-no-entregado {
-    --background: #dc3545 !important; /* Fondo rojo para no entregado */
-    color: white !important; /* Texto en blanco */
-  }
-  
-  /* Estado Devuelto (Morado) */
-  .estado-devuelto {
-    --background: #6f42c1 !important; /* Fondo morado para devuelto */
-    color: white !important; /* Texto en blanco */
-  }
-  
-  .pedido-label {
-    text-align: center;
-    flex-grow: 1;
-  }
-  
-  .pedido-item h2, .pedido-item p {
-    color: inherit; /* Asegúrate de que el color del texto se herede correctamente */
-  }
-  
-  ion-button {
-    color: white; /* Icono blanco */
-  }
-  
+/* Definir variables de color para mantener consistencia */
+
+
+ion-list {
+  background: transparent; /* Fondo transparente para mostrar el fondo degradado entre tarjetas */
+}
+
+.pedido-card {
+  background-color: #ffffff; /* Fondo blanco para las tarjetas */
+  border-radius: 12px;
+  margin: 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  color: var(--ion-color-dark); /* Texto en color oscuro para buena legibilidad */
+}
+
+.pedido-card ion-card-header,
+.pedido-card ion-card-content {
+  background: transparent;
+}
+
+.pedido-card ion-card-title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.pedido-card p {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.ver-detalle-button {
+  --background: var(--ion-color-primary);
+  --background-activated: var(--ion-color-primary-shade);
+  --color: var(--ion-color-primary-contrast);
+  margin-top: 12px;
+}
+
+/* Estados de los pedidos */
+.estado-entregado {
+  border-left: 8px solid var(--color-entregado);
+}
+
+.estado-transito {
+  border-left: 8px solid var(--color-transito);
+}
+
+.estado-no-entregado {
+  border-left: 8px solid var(--color-no-entregado);
+}
+
+.estado-devuelto {
+  border-left: 8px solid var(--color-devuelto);
+}
