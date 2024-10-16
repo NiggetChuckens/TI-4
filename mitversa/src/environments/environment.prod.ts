@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://cb75-181-161-128-11.ngrok-free.app/' // Cambiar por la url de la API
+  apiUrl: ' https://mit.christianferrer.me/' // Cambiar por la url de la API
 };
