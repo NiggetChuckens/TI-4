@@ -5,3 +5,4 @@ django_rest_framework
 python-dotenv
 prettytables
 djangorestframework-simplejwt
+mysqlclient
