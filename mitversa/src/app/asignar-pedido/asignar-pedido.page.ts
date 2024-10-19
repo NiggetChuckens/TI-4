@@ -22,7 +22,7 @@ export class AsignarPedidoPage implements OnInit {
     private toastController: ToastController,
     private navCtrl: NavController
   ) { }
-
+  isLoading: boolean = false;
   ngOnInit() {}
 
   // Confirmación de la asignación
@@ -53,20 +53,28 @@ export class AsignarPedidoPage implements OnInit {
     await alert.present();
   }
 
+  // Navegar hacia atrás
+  goBack() {
+    this.navCtrl.navigateBack('/tabs/repartidores');
+  }
+  
   // Asignación confirmada, mostrar toast y redirigir a repartidores
   async confirmarAsignacion() {
-    const toast = await this.toastController.create({
-      message: 'Se ha asignado los pedidos correspondientes.',
-      duration: 2000, // Mostrar el toast por 2 segundos
-      position: 'bottom'
-    });
+    this.isLoading = true;
+    setTimeout(async () => {
+      this.isLoading = false;
 
-    await toast.present();
+      // Muestra el mensaje de éxito
+      const toast = await this.toastController.create({
+        message: 'Se ha asignado los pedidos correspondientes.',
+        duration: 2000,
+        color: 'success',
+        position: 'top'
+      });
+      toast.present();
 
-    // Redirigir a la página de repartidores después de que el toast desaparezca
-    toast.onDidDismiss().then(() => {
       this.navCtrl.navigateBack('/tabs/repartidores');
-    });
+    }, 2000);
 
     console.log('Pedidos asignados:', this.selectedPedidos);
   }

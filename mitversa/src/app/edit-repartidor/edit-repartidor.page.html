@@ -18,18 +18,12 @@
         </ion-text>
       </ion-card-header>
       <ion-card-content>
-        <!-- Mensaje de error o éxito -->
-        <div
-          *ngIf="message"
-          [ngClass]="{ 'error-message': isError, 'success-message': !isError }"
-        >
+        <div *ngIf="message" [ngClass]="{ 'error-message': isError, 'success-message': !isError }">
           {{ message }}
         </div>
 
-        <!-- Formulario -->
-        <form (ngSubmit)="saveChanges()" #repartidorForm="ngForm">
+        <form (ngSubmit)="presentConfirm()" #repartidorForm="ngForm">
           <ion-grid>
-            <!-- Nombre Completo -->
             <ion-row>
               <ion-col size="12">
                 <ion-item>
@@ -46,7 +40,6 @@
               </ion-col>
             </ion-row>
 
-            <!-- Correo Electrónico -->
             <ion-row>
               <ion-col size="12">
                 <ion-item>
@@ -61,8 +54,8 @@
                   ></ion-input>
                 </ion-item>
               </ion-col>
-            </ion-row>         
-            <!-- Patente del Vehículo -->
+            </ion-row>
+
             <ion-row>
               <ion-col size="12">
                 <ion-item>
@@ -79,7 +72,6 @@
               </ion-col>
             </ion-row>
 
-            <!-- Foto de Perfil -->
             <ion-row class="ion-justify-content-center">
               <ion-col size="12" class="ion-text-center">
                 <ion-button
@@ -90,19 +82,12 @@
                   <ion-icon name="camera-outline" slot="start"></ion-icon>
                   Subir Fotografía
                 </ion-button>
-                <!-- Mostrar imagen seleccionada si existe -->
-                <ion-img *ngIf="repartidor.profilePicture" [src]="repartidor.profilePicture"></ion-img>
               </ion-col>
             </ion-row>
 
-            <!-- Botón de Guardar Cambios -->
             <ion-row>
               <ion-col size="12">
-                <ion-button
-                  expand="block"
-                  type="submit"
-                  [disabled]="isLoading"
-                >
+                <ion-button expand="block" type="submit" [disabled]="isLoading">
                   <ion-icon name="save-outline" slot="start"></ion-icon>
                   Guardar Cambios
                 </ion-button>
@@ -111,7 +96,6 @@
           </ion-grid>
         </form>
 
-        <!-- Spinner de carga -->
         <div class="spinner-container" *ngIf="isLoading">
           <ion-spinner name="crescent"></ion-spinner>
         </div>

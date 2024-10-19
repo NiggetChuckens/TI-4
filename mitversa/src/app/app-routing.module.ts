@@ -77,7 +77,8 @@ const routes: Routes = [
   {
     path: 'add-repartidor',
     loadChildren: () => import('./add-repartidor/add-repartidor.module').then( m => m.AddRepartidorPageModule)
-  },  {
+  },
+  {
     path: 'repartidor-home',
     loadChildren: () => import('./repartidor-home/repartidor-home.module').then( m => m.RepartidorHomePageModule)
   },
@@ -87,11 +88,15 @@ const routes: Routes = [
   },
   {
     path: 'edit-repartidor',
-    loadChildren: () => import('./edit-repartidor/edit-repartidor.module').then( m => m.EditRepartidorPageModule)
+    loadChildren: () => import('./edit-repartidor/edit-repartidor.module').then(m => m.EditRepartidorPageModule)
   },
   {
     path: 'asignar-pedido',
     loadChildren: () => import('./asignar-pedido/asignar-pedido.module').then( m => m.AsignarPedidoPageModule)
+  },
+  {
+    path: 'detalle-pedido/:pedidoId',
+    loadChildren: () => import('./detalle-pedido/detalle-pedido.module').then( m => m.DetallePedidoPageModule)
   },
 
 ];

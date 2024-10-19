@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { NavController, AlertController, ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-add-repartidor',
@@ -17,9 +17,13 @@ export class AddRepartidorPage {
   message: string = '';
   isError: boolean = false;
 
-  constructor(private navCtrl: NavController) {}
+  constructor(
+    private navCtrl: NavController,
+    private alertController: AlertController,
+    private toastController: ToastController
+  ) {}
 
-  handleAddRepartidor() {
+  async handleAddRepartidor() {
     if (this.password.length < 6) {
       this.isError = true;
       this.message = 'La contraseña debe tener al menos 6 caracteres.';
@@ -30,6 +34,30 @@ export class AddRepartidorPage {
       this.message = 'Las contraseñas no coinciden.';
       return;
     }
+    
+    // Mostrar una confirmación antes de registrar
+    const alert = await this.alertController.create({
+      header: 'Confirmación',
+      message: '¿Estás seguro de que quieres registrar este repartidor?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'cancel-button'
+        },
+        {
+          text: 'Confirmar',
+          handler: () => {
+            this.registerRepartidor();
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
+  async registerRepartidor() {
     this.isLoading = true;
     const repartidorData = {
       nombre: this.fullName.split(' ')[0],
@@ -37,17 +65,32 @@ export class AddRepartidorPage {
       email: this.email,
       contraseña: this.password,
       vehiclePlate: this.vehiclePlate,
-      profileImage: this.profileImage, // Incluimos la imagen
+      profileImage: this.profileImage // Incluimos la imagen
     };
 
     // Simulación de respuesta exitosa o de error (sin conexión con la BD por ahora)
-    setTimeout(() => {
+    setTimeout(async () => {
       this.isLoading = false;
       this.isError = false;
-      this.message = 'Repartidor registrado correctamente.';
+
+      // Mostrar un toast de confirmación
+      const toast = await this.toastController.create({
+        message: 'Repartidor registrado correctamente.',
+        duration: 2000, // Reduce la duración del toast
+        color: 'success',
+        position: 'top'
+      });
+      
+      await toast.present();
+
+      // Redirigir a la página de repartidores después de que el toast desaparezca
+      toast.onDidDismiss().then(() => {
+        this.navCtrl.navigateBack('/tabs/repartidores');
+      });
+
       // Limpieza del formulario
       this.resetForm();
-    }, 2000);
+    }, 2000); // Reduce el tiempo de simulación
   }
 
   selectProfileImage() {

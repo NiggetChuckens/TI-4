@@ -1,0 +1,37 @@
+ion-tab-bar {
+    --background: #ffffff;
+    --border-color: #dddddd;
+    padding: 0 5px; /* Un poco de espacio entre los íconos */
+  
+    ion-tab-button {
+      /* Estilo por defecto para íconos y texto */
+      font-size: 14px;
+      ion-icon {
+        font-size: 20px;
+      }
+    }
+    
+    /* Ajustes para pantallas grandes */
+    @media (min-width: 768px) {
+      ion-tab-button {
+        font-size: 16px; /* Tamaño más grande de texto para pantallas más grandes */
+        ion-icon {
+          font-size: 22px; /* Íconos un poco más grandes */
+        }
+      }
+    }
+    
+    /* Ajustes para pantallas pequeñas */
+    @media (max-width: 576px) {
+      ion-tab-button {
+        font-size: 12px; /* Texto más pequeño para pantallas pequeñas */
+        ion-icon {
+          font-size: 18px; /* Íconos más pequeños */
+        }
+        ion-label {
+          display: none; /* Ocultamos las etiquetas si es muy pequeño el dispositivo */
+        }
+      }
+    }
+  }
+  

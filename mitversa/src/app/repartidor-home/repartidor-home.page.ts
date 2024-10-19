@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular'; // Importamos NavController
 
 @Component({
   selector: 'app-repartidor-home',
@@ -8,20 +9,22 @@ import { Component, OnInit } from '@angular/core';
 export class RepartidorHomePage implements OnInit {
 
   pedidos = [
-    { id: '0001', direccion: 'Av alemania #1121, Temuco'},
-    { id: '0002', direccion: 'Av alemania #1121, Temuco'},
-    { id: '0003', direccion: 'Av alemania #1121, Temuco'},
-    { id: '0004', direccion: 'Av alemania #1121, Temuco'},
+    { id: '0001', direccion: 'Av alemania #1121, Temuco', cliente: 'Juan Pérez' },
+    { id: '0002', direccion: 'Av alemania #2000, Temuco', cliente: 'Ana Gómez' },
+    { id: '0003', direccion: 'Av alemania #1500, Temuco', cliente: 'Pedro Sánchez' },
+    { id: '0004', direccion: 'Av alemania #3000, Temuco', cliente: 'Luis Fernández' },
   ];
 
-  constructor() { }
+  constructor(private navCtrl: NavController) { }
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  navigateToDetail(pedidoId: string, direccion: string, cliente: string) {
+    this.navCtrl.navigateForward(`/tabs/detalle-pedido/${pedidoId}`, {
+      queryParams: {
+        direccion: direccion,
+        cliente: cliente
+      }
+    });
   }
-  navigateToDetail(pedidoId: string) {
-    // Redirige a la página de detalles del pedido, pasando el ID del pedido
-   // this.navCtrl.navigateForward(`/detalle-pedido/${pedidoId}`);
-  }
-
-
 }

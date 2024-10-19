@@ -122,10 +122,9 @@
             </ion-row>
             <div
             *ngIf="message"
-            [ngClass]="{ 'error-message': isError, 'success-message': !isError }"
+            [ngClass]="{ 'error-message': isError,}"
           >
             <ion-icon *ngIf="isError" name="alert-circle-outline"></ion-icon>
-            <ion-icon *ngIf="!isError" name="checkmark-circle-outline"></ion-icon>
             <span>{{ message }}</span>
           </div>
 

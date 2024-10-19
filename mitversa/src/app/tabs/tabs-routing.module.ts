@@ -60,6 +60,10 @@ const routes: Routes = [
         path:'asignar-pedido',
         loadChildren: () => import('../asignar-pedido/asignar-pedido.module').then(m=> m.AsignarPedidoPageModule)
       },
+      {
+        path: 'detalle-pedido/:pedidoId',
+        loadChildren: () => import('../detalle-pedido/detalle-pedido.module').then(m => m.DetallePedidoPageModule)
+      },
       
 
 

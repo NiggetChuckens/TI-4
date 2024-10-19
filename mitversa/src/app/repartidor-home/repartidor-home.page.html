@@ -9,11 +9,7 @@
 
 <ion-content>
   <ion-list>
-    <!-- Eliminamos ion-item y utilizamos ion-card para las tarjetas -->
-    <ion-card
-      *ngFor="let pedido of pedidos"
-      class="pedido-card"
-    >
+    <ion-card *ngFor="let pedido of pedidos" class="pedido-card">
       <ion-card-header>
         <ion-card-title>Pedido #{{ pedido.id }}</ion-card-title>
       </ion-card-header>
@@ -21,7 +17,7 @@
         <p>{{ pedido.direccion }}</p>
         <ion-button
           expand="block"
-          (click)="navigateToDetail(pedido.id)"
+          (click)="navigateToDetail(pedido.id, pedido.direccion, pedido.cliente)"
           class="ver-detalle-button"
         >
           Ver Detalle

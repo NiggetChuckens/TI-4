@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { NavController } from '@ionic/angular';
+import { NavController, AlertController, ToastController } from '@ionic/angular'; // Importa AlertController y ToastController
 
 interface Repartidor {
   name: string;
@@ -26,26 +26,58 @@ export class EditRepartidorPage implements OnInit {
   isError: boolean = false;
 
   constructor(
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    private alertController: AlertController, // Inyecta AlertController
+    private toastController: ToastController // Inyecta ToastController
   ) {}
 
   ngOnInit() {
     console.log('Página de edición de repartidor visual cargada.');
-    // Aquí no cargamos datos de ninguna fuente externa, es solo visual.
   }
 
-  saveChanges() {
+  async presentConfirm() {
+    const alert = await this.alertController.create({
+      header: 'Confirmar cambios',
+      message: '¿Estás seguro de que deseas guardar los cambios?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'cancel-button'
+        },
+        {
+          text: 'Confirmar',
+          handler: () => {
+            this.saveChanges();
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
+  async saveChanges() {
     this.isLoading = true;
-    // Simulación de guardar cambios (sin lógica)
-    setTimeout(() => {
+    // Simulación de guardar cambios (sin lógica real)
+    setTimeout(async () => {
       this.isLoading = false;
       console.log('Cambios simulados guardados:', this.repartidor);
+
+      // Muestra el mensaje de éxito
+      const toast = await this.toastController.create({
+        message: 'Tus cambios se han realizado exitosamente.',
+        duration: 2000,
+        color: 'success',
+        position: 'top'
+      });
+      toast.present();
+
       this.navCtrl.navigateBack('/tabs/repartidores');
     }, 2000);
   }
 
   selectProfileImage() {
-    // Lógica simulada para seleccionar una imagen (sin implementación real)
     console.log('Seleccionar imagen de perfil (simulado).');
   }
 

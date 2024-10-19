@@ -1,0 +1,45 @@
+.pedido-card {
+    width: 100%;
+    max-width: 500px;
+    margin: 20px auto;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  ion-card-header {
+    background-color: var(--ion-color-primary);
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    padding: 12px;
+  }
+  
+  ion-card-title {
+    color: #ffffff;
+    font-size: 22px;
+  }
+  
+  ion-list {
+    margin-top: 15px;
+  }
+  
+  ion-item {
+    --background: transparent;
+    padding: 10px 0;
+  }
+  
+  ion-label h2 {
+    font-size: 18px;
+    margin: 0;
+    font-weight: bold;
+  }
+  
+  ion-label p {
+    font-size: 16px;
+    margin: 2px 0 10px;
+  }
+  
+  ion-button {
+    margin-top: 20px;
+    --border-radius: 10px;
+  }
+  
