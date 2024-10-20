@@ -39,7 +39,7 @@ export class loginPage {
     this.isLoading = true;
     const loginData = {
       email: this.email,
-      contraseña: this.password
+      password: this.password
     };
 
     fetch(`${environment.apiUrl}/api/login`, {

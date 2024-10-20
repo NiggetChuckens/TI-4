@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  apiUrl: ' https://mit.christianferrer.me/' // Cambiar por la url de la API
+  apiUrl: ' https://mitversa.christianferrer.me' // Cambiar por la url de la API
 };
