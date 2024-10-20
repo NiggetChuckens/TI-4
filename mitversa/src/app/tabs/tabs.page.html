@@ -11,15 +11,10 @@
         <ion-icon name="person-add-outline"></ion-icon>
         <ion-label>Register</ion-label>
       </ion-tab-button>
-
-     <!-- <ion-tab-button tab="recover-password" href="/tabs/recover-password">
-        <ion-icon name="key-outline"></ion-icon>
-        <ion-label>Recover</ion-label>
-      </ion-tab-button>   --> 
     </ng-container>
 
     <!-- Tabs si el usuario ha iniciado sesión y es un usuario regular -->
-    <ng-container *ngIf="isLoggedIn && userType === 'usuario'">
+    <ng-container *ngIf="isLoggedIn && userType === 'cliente'">
       <ion-tab-button tab="user-home" href="/tabs/user-home">
         <ion-icon name="home-outline"></ion-icon>
         <ion-label>Home</ion-label>
@@ -28,34 +23,10 @@
         <ion-icon name="cube-outline"></ion-icon>
         <ion-label>Pedidos</ion-label>
       </ion-tab-button>
-      <ion-tab-button tab="repartidor-home" href="/tabs/repartidor-home">  <!-- Eliminar cuando funcione la diferenciación de usuarios-->
-        <ion-icon name="home-outline"></ion-icon>
-        <ion-label>Home-Repartidor</ion-label>
-      </ion-tab-button>
-      <ion-tab-button tab="scanner" href="/tabs/scanner"> <!-- Eliminar cuando funcione la diferenciación de usuarios-->
-        <ion-icon name="barcode-outline"></ion-icon>
-        <ion-label>Scanner</ion-label>
-      </ion-tab-button>
-      <ion-tab-button tab="repartidor-historial" href="/tabs/repartidor-historial">  <!-- Eliminar cuando funcione la diferenciación de usuarios-->
-        <ion-icon name="home-outline"></ion-icon>
-        <ion-label>Repartidor-historial</ion-label>
-      </ion-tab-button>
-      <ion-tab-button tab="gerente-home" href="/tabs/gerente-home">  <!-- Eliminar cuando funcione la diferenciación de usuarios-->
-        <ion-icon name="home"></ion-icon>
-        <ion-label>Gerente</ion-label>
-      </ion-tab-button>
-      <ion-tab-button tab="repartidores" href="/tabs/repartidores">  <!-- Eliminar cuando funcione la diferenciación de usuarios-->
-        <ion-icon name="car"></ion-icon>
-        <ion-label>Repartidores</ion-label>
-      </ion-tab-button>
-
-
-
       <ion-tab-button tab="perfil" href="/tabs/perfil">
         <ion-icon name="person-outline"></ion-icon>
         <ion-label>Profile</ion-label>
       </ion-tab-button>
-      
     </ng-container>
 
     <!-- Tabs si el usuario ha iniciado sesión y es un repartidor -->
@@ -65,14 +36,14 @@
         <ion-label>Home</ion-label>
       </ion-tab-button>
 
-      <ion-tab-button tab="repartidor-pedidos" href="/tabs/repartidor-pedidos">
-        <ion-icon name="list-outline"></ion-icon>
-        <ion-label>Pedidos</ion-label>
+      <ion-tab-button tab="repartidor-historial" href="/tabs/repartidor-historial">  <!-- Eliminar cuando funcione la diferenciación de usuarios-->
+        <ion-icon name="home-outline"></ion-icon>
+        <ion-label>Repartidor-historial</ion-label>
       </ion-tab-button>
 
-      <ion-tab-button tab="Scanner" href="/tabs/scanner">
-        <ion-icon name="checkmark-done-outline"></ion-icon>
-        <ion-label>scanner</ion-label>
+      <ion-tab-button tab="scanner" href="/tabs/scanner">
+        <ion-icon name="scan-outline"></ion-icon>
+        <ion-label>Scanner</ion-label>
       </ion-tab-button>
 
       <ion-tab-button tab="perfil" href="/tabs/perfil">
@@ -88,9 +59,9 @@
         <ion-label>Home</ion-label>
       </ion-tab-button>
 
-      <ion-tab-button tab="gerente-reportes" href="/tabs/gerente-reportes">
-        <ion-icon name="analytics-outline"></ion-icon>
-        <ion-label>Reportes</ion-label>
+      <ion-tab-button tab="repartidores" href="/tabs/repartidores">
+        <ion-icon name="car"></ion-icon>
+        <ion-label>Repartidores</ion-label>
       </ion-tab-button>
 
       <ion-tab-button tab="perfil" href="/tabs/perfil">
