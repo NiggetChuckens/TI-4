@@ -7,7 +7,6 @@
   --ion-color-primary-tint: #4c8dff;
 }
 
-
 .header-container {
   text-align: center;
   margin-bottom: 2rem;
@@ -92,29 +91,18 @@
 .timeline {
   position: relative;
   padding-left: 2rem;
-
-  &::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    background: var(--ion-color-medium);
-  }
+  margin-top: 2rem;
 
   .timeline-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 2rem; /* Updated margin-bottom */
     position: relative;
-    padding-bottom: 1.5rem;
-
-    &:last-child {
-      padding-bottom: 0;
-    }
 
     &.active {
       .timeline-icon {
         background: var(--ion-color-primary);
-        color: var(--ion-color-primary-contrast);
+        color: #ffffff;
       }
 
       .timeline-content {
@@ -127,17 +115,20 @@
     .timeline-icon {
       position: absolute;
       left: -2.5rem;
-      width: 2rem;
-      height: 2rem;
+      width: 2.5rem;
+      height: 2.5rem;
       background: var(--ion-color-light);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       color: var(--ion-color-medium);
+      z-index: 2;
     }
 
     .timeline-content {
+      padding-left: 1rem;
+
       h4 {
         font-size: 1rem;
         font-weight: 600;
@@ -150,6 +141,16 @@
         color: var(--ion-color-medium);
         margin: 0;
       }
+    }
+
+    .timeline-line {
+      position: absolute;
+      left: -1.25rem;
+      top: 2.5rem;
+      bottom: -2rem; /* Updated bottom */
+      width: 2px;
+      background: var(--ion-color-medium);
+      z-index: 1;
     }
   }
 }

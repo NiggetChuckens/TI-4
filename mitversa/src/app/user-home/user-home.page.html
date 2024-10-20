@@ -1,9 +1,9 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>Tracker</ion-title>
+    <ion-title>Rastreador de Envíos</ion-title>
   </ion-toolbar>
-
 </ion-header>
+
 <ion-content class="ion-padding">
   <div class="header-container">
     <h1>Rastrea tu pedido</h1>
@@ -11,34 +11,35 @@
   </div>
 
   <div class="form-container">
-    <form (ngSubmit)="onSubmit()" #trackingForm="ngForm">
-      <ion-item lines="none" class="custom-input">
-        <ion-input type="text" [(ngModel)]="trackingNumber" name="trackingNumber" required placeholder="Número de pedido"></ion-input>
+    <form (ngSubmit)="onSubmit()">
+      <ion-item class="custom-input">
+        <ion-label position="floating">Número de Seguimiento</ion-label>
+        <ion-input [(ngModel)]="trackingNumber" name="trackingNumber" required></ion-input>
       </ion-item>
-      <ion-button expand="block" type="submit" [disabled]="!trackingForm.form.valid" class="track-button">
-        <ion-icon name="search-outline" slot="start"></ion-icon>
-        Buscar
-      </ion-button>
+      <ion-button expand="full" class="track-button" type="submit">Rastrear</ion-button>
     </form>
   </div>
 
   <div class="status-container" *ngIf="currentStatus">
-    <h2>Shipment Status</h2>
-    <div class="status-card" [ngClass]="{'not-found': currentStatus === 'Not Found'}">
-      <ion-icon [name]="getStatusIcon()" class="status-icon"></ion-icon>
+    <h2>Estado del Envío:</h2>
+    <div class="status-card" [ngClass]="{'not-found': currentStatus === 'No encontrado'}">
+      <ion-icon class="status-icon" [name]="getStatusIcon(currentStatus)"></ion-icon>
       <h3>{{ currentStatus }}</h3>
     </div>
 
-    <div class="timeline" *ngIf="currentStatus !== 'Not Found'">
-      <div class="timeline-item" *ngFor="let step of steps; let i = index" [ngClass]="{'active': isStepActive(step)}">
-        <div class="timeline-icon">
-          <ion-icon [name]="step.icon"></ion-icon>
+    <div class="timeline" *ngIf="shipmentFound">
+      <ng-container *ngFor="let step of steps; let i = index">
+        <div class="timeline-item" [ngClass]="{'active': isStepActive(step)}">
+          <div class="timeline-icon">
+            <ion-icon [name]="step.icon"></ion-icon>
+          </div>
+          <div class="timeline-content">
+            <h4>{{ step.status }}</h4>
+            <p>{{ step.date }}</p>
+          </div>
+          <div class="timeline-line" *ngIf="i < steps.length - 1"></div>
         </div>
-        <div class="timeline-content">
-          <h4>{{ step.status }}</h4>
-          <p>{{ step.date }}</p>
-        </div>
-      </div>
+      </ng-container>
     </div>
   </div>
 </ion-content>

@@ -11,7 +11,6 @@
       <div class="scanner-line"></div>
     </div>
     
-    
     <ion-button (click)="scanBarcode()" expand="block">
       <ion-icon name="barcode-outline" slot="start"></ion-icon>
       Escanear
@@ -34,6 +33,18 @@
         <div class="scan-result">
           <h2>Codigo escaneado</h2>
           <p>{{ scannedCode }}</p>
+          <div *ngIf="scanResult">
+            <h3>Detalles del Envío</h3>
+            <p>ID Envío: {{ scanResult.id_envio }}</p>
+            <p>ID Estado Envío: {{ scanResult.id_estado_envio }}</p>
+            <p>ID Repartidor: {{ scanResult.id_repartidor }}</p>
+            <p>ID Cliente: {{ scanResult.id_cliente }}</p>
+            <p>Fecha Pedido Inicio: {{ scanResult.fecha_pedido_inicio }}</p>
+            <p>Fecha Pedido Fin: {{ scanResult.fecha_pedido_fin }}</p>
+            <p>Dirección Origen: {{ scanResult.direccion_origen }}</p>
+            <p>Dirección Destino: {{ scanResult.direccion_destino }}</p>
+            <p>Costo Total: {{ scanResult.costo_total }}</p>
+          </div>
           <ion-button expand="block" (click)="editCode()">
             <ion-icon name="create-outline" slot="start"></ion-icon>
             Edit
