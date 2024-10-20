@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Pedidos Asignados</ion-title>
+    <ion-buttons slot="end">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-card *ngFor="let pedido of pedidos" class="pedido-card">
+      <ion-card-header>
+        <ion-card-title>Pedido #{{ pedido.id }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>{{ pedido.direccion }}</p>
+        <ion-button
+          expand="block"
+          (click)="navigateToDetail(pedido.id, pedido.direccion, pedido.cliente)"
+          class="ver-detalle-button"
+        >
+          Ver Detalle
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+</ion-content>

@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>Pedidos</ion-title>
+    <ion-title>Historial de Pedidos</ion-title>
     <ion-buttons slot="end">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
@@ -8,24 +8,35 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-item *ngFor="let pedido of pedidos" 
-              [ngClass]="{
-                'estado-entregado': pedido.estado === 'entregado',
-                'estado-transito': pedido.estado === 'transito',
-                'estado-no-entregado': pedido.estado === 'no-entregado',
-                'estado-devuelto': pedido.estado === 'devuelto'
-              }"
-              class="pedido-item">
-      <ion-label class="pedido-label">
-        <h2>Pedido #{{ pedido.id }}</h2>
-        <p>Estado: {{pedido.estado}}</p>
-        <p>{{ pedido.direccion }}</p>
-      </ion-label>
-      <ion-button fill="clear" slot="end" (click)="navigateToDetail(pedido.id)">
-        <ion-icon name="arrow-forward-circle-outline"></ion-icon>
-      </ion-button>
-    </ion-item>
-  </ion-list>
-  
+  <!-- Botones de segmentación personalizados -->
+  <div class="segment-container">
+    <button
+      [ngClass]="{'segment-button': true, 'active': selectedSegment === 'entregados'}"
+      (click)="selectSegment('entregados')">
+      Entregados
+    </button>
+    <button
+      [ngClass]="{'segment-button': true, 'active': selectedSegment === 'no entregado'}"
+      (click)="selectSegment('no entregado')">
+      No entregado
+    </button>
+  </div>
+
+  <!-- Lista de pedidos filtrados -->
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" size-md="6" *ngFor="let pedido of filteredPedidos">
+        <ion-item [ngClass]="{
+                    'estado-entregado': pedido.estado === 'entregado',
+                    'estado-noentregado': pedido.estado === 'no entregado'
+                  }" class="pedido-item">
+          <ion-label class="pedido-label">
+            <h2>Pedido #{{ pedido.id }}</h2>
+            <p>{{ pedido.direccion }}</p>
+            <p><strong>Estado:</strong> {{ pedido.estado | titlecase }}</p>
+          </ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

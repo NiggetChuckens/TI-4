@@ -1,0 +1,105 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Editar Repartidor</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="register-container">
+    <ion-card>
+      <ion-card-header>
+        <ion-text color="primary">
+          <h2 class="ion-text-center">Editar Repartidor</h2>
+        </ion-text>
+      </ion-card-header>
+      <ion-card-content>
+        <div *ngIf="message" [ngClass]="{ 'error-message': isError, 'success-message': !isError }">
+          {{ message }}
+        </div>
+
+        <form (ngSubmit)="presentConfirm()" #repartidorForm="ngForm">
+          <ion-grid>
+            <ion-row>
+              <ion-col size="12">
+                <ion-item>
+                  <ion-label position="floating">
+                    <ion-icon name="person-outline"></ion-icon> Nombre Completo
+                  </ion-label>
+                  <ion-input
+                    type="text"
+                    name="name"
+                    [(ngModel)]="repartidor.name"
+                    required
+                  ></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col size="12">
+                <ion-item>
+                  <ion-label position="floating">
+                    <ion-icon name="mail-outline"></ion-icon> Correo Electrónico
+                  </ion-label>
+                  <ion-input
+                    type="email"
+                    name="email"
+                    [(ngModel)]="repartidor.email"
+                    required
+                  ></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col size="12">
+                <ion-item>
+                  <ion-label position="floating">
+                    <ion-icon name="car-outline"></ion-icon> Patente del Vehículo
+                  </ion-label>
+                  <ion-input
+                    type="text"
+                    name="vehiclePlate"
+                    [(ngModel)]="repartidor.patente"
+                    required
+                  ></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+
+            <ion-row class="ion-justify-content-center">
+              <ion-col size="12" class="ion-text-center">
+                <ion-button
+                  (click)="selectProfileImage()"
+                  color="secondary"
+                  expand="block"
+                >
+                  <ion-icon name="camera-outline" slot="start"></ion-icon>
+                  Subir Fotografía
+                </ion-button>
+              </ion-col>
+            </ion-row>
+
+            <ion-row>
+              <ion-col size="12">
+                <ion-button expand="block" type="submit" [disabled]="isLoading">
+                  <ion-icon name="save-outline" slot="start"></ion-icon>
+                  Guardar Cambios
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </form>
+
+        <div class="spinner-container" *ngIf="isLoading">
+          <ion-spinner name="crescent"></ion-spinner>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

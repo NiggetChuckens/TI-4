@@ -23,7 +23,7 @@ export class RepartidoresPage implements OnInit {
       name: 'Robertito Nieves',
       email: 'enfasis@muu.cow',
       patente: 'Vaca-42065',
-      profilePicture: 'https://media.discordapp.net/attachments/1032485071875219527/1171688219629330462/image.png?ex=66f1aa70&is=66f058f0&hm=be56f39f70e95bacd28d4fc5fcf5e49d73c740da914209f547b672abfd7bdbef&=&format=webp&quality=lossless',
+      profilePicture: 'https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcQE0puZEMCCinpfPb1Ogt5V-Mww9FyUF0ba-SO_nyKmVLaDrxmrv2RFnvhzlGUgLaBxObMen_7p7P8aEyU',
       repartos: 356,
       devueltos: 15,
       entregados: 341,
@@ -32,7 +32,7 @@ export class RepartidoresPage implements OnInit {
       name: 'Juaker aguilar',
       email: 'elmasaguilar@sex.cl',
       patente: 'Sex-6969',
-      profilePicture: 'https://media.discordapp.net/attachments/1032485071875219527/1248136773859676161/image.png?ex=66f19c34&is=66f04ab4&hm=88997a7d3535ab5649e6241fdc67176ab1ef52b476ffdcd629c91f32a0aaa9ca&=&format=webp&quality=lossless&width=533&height=670',
+      profilePicture: 'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSaHOanyX4SZTw0IqwA6t0044Ea_aUeDENZASC8t1RFYCTEx_go',
       repartos: 400,
       devueltos: 10,
       entregados: 390,
@@ -84,15 +84,18 @@ export class RepartidoresPage implements OnInit {
   }
 
   editProfile(repartidor: Repartidor) {
-    console.log('Editar perfil de:', repartidor.name);
+    this.navCtrl.navigateForward('/tabs/edit-repartidor');
   }
 
   assignOrder(repartidor: Repartidor) {
     console.log('Asignar pedido a:', repartidor.name);
+    this.navCtrl.navigateForward('/tabs/asignar-pedido');
   }
+  
 
   // Método para ir a la página de agregar repartidor
   goToAddRepartidor() {
     this.navCtrl.navigateForward('/tabs/add-repartidor');
   }
+
 }

@@ -1,0 +1,53 @@
+/* Definir variables de color para mantener consistencia */
+
+
+ion-list {
+  background: transparent; /* Fondo transparente para mostrar el fondo degradado entre tarjetas */
+}
+
+.pedido-card {
+  background-color: #ffffff; /* Fondo blanco para las tarjetas */
+  border-radius: 12px;
+  margin: 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  color: var(--ion-color-dark); /* Texto en color oscuro para buena legibilidad */
+}
+
+.pedido-card ion-card-header,
+.pedido-card ion-card-content {
+  background: transparent;
+}
+
+.pedido-card ion-card-title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.pedido-card p {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.ver-detalle-button {
+  --background: var(--ion-color-primary);
+  --background-activated: var(--ion-color-primary-shade);
+  --color: var(--ion-color-primary-contrast);
+  margin-top: 12px;
+}
+
+/* Estados de los pedidos */
+.estado-entregado {
+  border-left: 8px solid var(--color-entregado);
+}
+
+.estado-transito {
+  border-left: 8px solid var(--color-transito);
+}
+
+.estado-no-entregado {
+  border-left: 8px solid var(--color-no-entregado);
+}
+
+.estado-devuelto {
+  border-left: 8px solid var(--color-devuelto);
+}

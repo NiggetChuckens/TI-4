@@ -1,81 +1,173 @@
 ion-content {
-    --background: linear-gradient(135deg, var(--ion-color-primary), var(--ion-color-secondary));
+  --background: linear-gradient(135deg, var(--ion-color-primary), var(--ion-color-secondary));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Ocupa toda la pantalla */
+  width: 100%; /* Asegura que ocupe todo el ancho */
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 400px; /* Limita el ancho del formulario */
+  padding: 16px;
+  box-sizing: border-box;
+  margin: auto; /* Asegura que se centre horizontalmente */
+}
+
+ion-card {
+  width: 100%; /* Asegura que el card ocupe el 100% del contenedor */
+  margin: 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+ion-card-content {
+  padding: 16px;
+}
+
+form {
+  ion-item {
+    --background: transparent;
+    --border-color: var(--ion-color-primary);
+    --highlight-color-focused: var(--ion-color-secondary);
+    --highlight-height: 2px;
+    margin-bottom: 16px;
   }
-  
-  .login-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
+
+  ion-input {
+    --color: var(--ion-color-dark);
+    --placeholder-color: var(--ion-color-medium);
+    --padding-start: 10px;
   }
-  
-  ion-card {
-    width: 100%;
-    max-width: 400px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  ion-toggle {
+    --background: var(--ion-color-medium);
+    --background-checked: var(--ion-color-primary);
+    --handle-background: var(--ion-color-light);
+    --handle-background-checked: var(--ion-color-light);
   }
-  
-  form {
-    ion-item {
-      --background: transparent;
-      --border-color: rgba(255, 255, 255, 0.1);
-      --highlight-height: 0;
-      margin-bottom: 16px;
-  
-      &:last-of-type {
-        margin-bottom: 0;
-      }
-    }
-  
-    ion-input {
-      --color: var(--ion-color-dark);
-      --placeholder-color: var(--ion-color-medium);
-    }
-  
-    ion-toggle {
-      --background: var(--ion-color-medium);
-      --background-checked: var(--ion-color-primary);
-      --handle-background: var(--ion-color-light);
-      --handle-background-checked: var(--ion-color-light);
-    }
-  }
-  
-  .sign-up-text {
-    margin-top: 20px;
+}
+
+ion-button {
+  margin-top: 16px;
+}
+
+ion-button[color="danger"] {
+  --background: #db4437; /* Color rojo de Google */
+  --background-activated: #c33d2e;
+  --background-focused: #c33d2e;
+  --background-hover: #c33d2e;
+  --color: #ffffff;
+}
+
+ion-spinner {
+  margin-top: 16px;
+}
+
+.sign-up-text {
+  margin-top: 10px;
+  color: var(--ion-color-light);
+  text-align: center;
+
+  a {
     color: var(--ion-color-light);
-    text-align: center;
-  
-    a {
-      color: var(--ion-color-light);
-      font-weight: bold;
-      text-decoration: none;
-    }
-  }
-  
-  .sign-up-text a {
+    font-weight: bold;
+    text-decoration: none;
     cursor: pointer;
     transition: color 0.3s;
+
+    &:hover {
+      color: var(--ion-color-primary);
+    }
   }
-  
-  .sign-up-text a:hover {
-    color: var(--ion-color-primary);
+}
+
+.error-message,
+.success-message {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  border-left: 5px solid;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+.error-message {
+  background-color: rgba(var(--ion-color-danger-rgb), 0.1);
+  color: var(--ion-color-danger);
+  border-left-color: var(--ion-color-danger);
+}
+
+.success-message {
+  background-color: rgba(var(--ion-color-success-rgb), 0.1);
+  color: var(--ion-color-success);
+  border-left-color: var(--ion-color-success);
+}
+
+.error-message ion-icon,
+.success-message ion-icon {
+  margin-right: 10px;
+  font-size: 20px;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+  .login-container {
+    padding: 12px;
   }
-  
-  .error-message {
-    background-color: #f8d7da;
-    color: #721c24;
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 15px;
-    text-align: center;
+
+  ion-card-content {
+    padding: 12px;
   }
-  
-  .success-message {
-    background-color: #d4edda;
-    color: #155724;
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 15px;
-    text-align: center;
+
+  ion-button {
+    margin-top: 12px;
   }
+
+  form {
+    ion-item {
+      margin-bottom: 12px;
+    }
+  }
+
+  ion-text h1 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .login-container {
+    padding: 8px;
+  }
+
+  ion-card {
+    margin: 0;
+  }
+
+  ion-card-content {
+    padding: 8px;
+  }
+
+  form {
+    ion-item {
+      margin-bottom: 8px;
+    }
+  }
+
+  ion-button {
+    margin-top: 8px;
+  }
+
+  ion-text h1 {
+    font-size: 1.3rem;
+  }
+
+  .sign-up-text {
+    font-size: 0.9rem;
+  }
+}

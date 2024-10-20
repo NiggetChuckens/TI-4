@@ -63,14 +63,13 @@
         </div>
       </div>
 
-
+      <!-- Acciones del repartidor -->
       <div class="repartidor-actions">
         <ion-button color="tertiary" (click)="assignOrder(repartidor)">
           <ion-icon slot="start" name="cube-outline"></ion-icon>
           Asignar Pedidos
         </ion-button>
       </div>
-
 
       <!-- Estadísticas del repartidor -->
       <div class="repartidor-stats">
@@ -84,10 +83,7 @@
             </ion-col>
             <ion-col>
               <div class="stat-icon">
-                <ion-icon
-                  name="return-down-back-outline"
-                  color="danger"
-                ></ion-icon>
+                <ion-icon name="return-down-back-outline" color="danger"></ion-icon>
               </div>
               <p>{{ repartidor.devueltos }} Devueltos</p>
             </ion-col>

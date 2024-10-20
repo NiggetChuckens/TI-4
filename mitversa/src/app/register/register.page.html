@@ -1,67 +1,118 @@
-<ion-header>
-  <ion-toolbar color="primary">
-    <ion-title>Register</ion-title>
-  </ion-toolbar>
-</ion-header>
 
-<ion-content class="ion-padding">
+
+<ion-content [fullscreen]="true" scroll="false">
+  <ion-text color="secondary">
+    <h1 class="ion-text-center">Registrarse</h1>
+  </ion-text>
   <div class="register-container">
     <ion-card>
+      <ion-card-header class="no-background">
+      </ion-card-header>
       <ion-card-content>
-        <div *ngIf="message" [ngClass]="{'error-message': isError, 'success-message': !isError}">
-          {{ message }}
-        </div>
+
         <form (ngSubmit)="handleRegister()" #registerForm="ngForm">
-          <ion-item>
-            <ion-icon name="person-outline" slot="start"></ion-icon>
-            <ion-input
-              type="text"
-              placeholder="Full Name"
-              name="fullName"
-              [(ngModel)]="fullName"
-              required
-            ></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-icon name="mail-outline" slot="start"></ion-icon>
-            <ion-input
-              type="email"
-              placeholder="Email"
-              name="email"
-              [(ngModel)]="email"
-              required
-            ></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
-            <ion-input
-              type="password"
-              placeholder="Password"
-              name="password"
-              [(ngModel)]="password"
-              required
-            ></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
-            <ion-input
-              type="password"
-              placeholder="Confirm Password"
-              name="confirmPassword"
-              [(ngModel)]="confirmPassword"
-              required
-            ></ion-input>
-          </ion-item>
-          <ion-button expand="block" type="submit" [disabled]="!registerForm.form.valid || isLoading" class="ion-margin-top">
-            <ion-icon name="person-add-outline" slot="start"></ion-icon>
-            Sign Up
-          </ion-button>
+          <ion-grid>
+            <!-- Nombre Completo -->
+            <ion-row>
+              <ion-col size="12">
+                <ion-item lines="full">
+                  <ion-label position="floating">
+                    <ion-icon name="person-outline"></ion-icon> Nombre Completo
+                  </ion-label>
+                  <ion-input
+                    type="text"
+                    name="fullName"
+                    [(ngModel)]="fullName"
+                    required
+                  ></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+
+            <!-- Correo Electrónico -->
+            <ion-row>
+              <ion-col size="12">
+                <ion-item lines="full">
+                  <ion-label position="floating">
+                    <ion-icon name="mail-outline"></ion-icon> Correo Electrónico
+                  </ion-label>
+                  <ion-input
+                    type="email"
+                    name="email"
+                    [(ngModel)]="email"
+                    required
+                  ></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+
+            <!-- Contraseña y Confirmar Contraseña -->
+            <ion-row>
+              <ion-col size="12" size-md="6">
+                <ion-item lines="full">
+                  <ion-label position="floating">
+                    <ion-icon name="lock-closed-outline"></ion-icon> Contraseña
+                  </ion-label>
+                  <ion-input
+                    type="password"
+                    name="password"
+                    [(ngModel)]="password"
+                    required
+                  ></ion-input>
+                </ion-item>
+              </ion-col>
+              <ion-col size="12" size-md="6">
+                <ion-item lines="full">
+                  <ion-label position="floating">
+                    <ion-icon name="lock-closed-outline"></ion-icon> Confirmar Contraseña
+                  </ion-label>
+                  <ion-input
+                    type="password"
+                    name="confirmPassword"
+                    [(ngModel)]="confirmPassword"
+                    required
+                  ></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <!-- Mensaje de error o éxito -->
+              <div
+              *ngIf="message"
+              [ngClass]="{ 'error-message': isError, 'success-message': !isError }"
+              >
+              <ion-icon *ngIf="isError" name="alert-circle-outline"></ion-icon>
+              <ion-icon *ngIf="!isError" name="checkmark-circle-outline"></ion-icon>
+              <span>{{ message }}</span>
+              </div>
+            <!-- Botón de Registro -->
+            <ion-row>
+              <ion-col size="12">
+                <ion-button
+                  expand="block"
+                  type="submit"
+                  [disabled]="!registerForm.form.valid || isLoading"
+                  class="ion-margin-top"
+                >
+                  <ion-icon name="person-add-outline" slot="start"></ion-icon>
+                  Registrarse
+                </ion-button>
+              </ion-col>
+            </ion-row>
+
+            <!-- Spinner de carga -->
+            <ion-row *ngIf="isLoading">
+              <ion-col size="12" class="ion-text-center">
+                <ion-spinner name="crescent"></ion-spinner>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
         </form>
-        <ion-spinner *ngIf="isLoading" name="crescent"></ion-spinner>
       </ion-card-content>
     </ion-card>
-    <p class="login-text">
-      Already have an account? <a (click)="navigateToLogin()">Login</a>
+
+    <!-- Texto para iniciar sesión (afuera de la tarjeta) -->
+    <p class="sign-up-text">
+      ¿Ya tienes una cuenta? <a (click)="navigateToLogin()">Iniciar sesión</a>
     </p>
   </div>
 </ion-content>

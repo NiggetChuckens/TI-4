@@ -19,13 +19,6 @@
         </ion-text>
       </ion-card-header>
       <ion-card-content>
-        <!-- Mensaje de error o éxito -->
-        <div
-          *ngIf="message"
-          [ngClass]="{ 'error-message': isError, 'success-message': !isError }"
-        >
-          {{ message }}
-        </div>
 
         <!-- Formulario -->
         <form (ngSubmit)="handleAddRepartidor()" #repartidorForm="ngForm">
@@ -127,6 +120,13 @@
                 <ion-img *ngIf="profileImage" [src]="profileImage"></ion-img>
               </ion-col>
             </ion-row>
+            <div
+            *ngIf="message"
+            [ngClass]="{ 'error-message': isError,}"
+          >
+            <ion-icon *ngIf="isError" name="alert-circle-outline"></ion-icon>
+            <span>{{ message }}</span>
+          </div>
 
             <!-- Botón de Registro -->
             <ion-row>
